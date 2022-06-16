@@ -1,5 +1,3 @@
-import { ReadTimeResults } from 'reading-time';
-
 export type EvenDate = {
   startDate: string;
   endDate: string;
@@ -66,9 +64,6 @@ export type Setting = {
   key: string;
   value: string;
 };
-
-export type NextLocale = 'en' | 'zh-CN';
-export type WebinyLocale = 'en-AU' | 'zh-Hans-CN';
 
 import { OutputBlockData as BaseOutputBlockData } from '@editorjs/editorjs';
 export interface OutputBlockData extends BaseOutputBlockData {
