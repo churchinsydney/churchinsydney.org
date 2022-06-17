@@ -44,7 +44,6 @@ export default function OurLifePage({
   settings: Settings;
 }) {
   const isLoaded = useLoaded();
-
   const ourLife = ourLives.find(({ isHeader }) => isHeader) || {
     title: '',
     description: '',
@@ -71,12 +70,12 @@ export default function OurLifePage({
                 className='mt-12 grid gap-4 sm:grid-cols-2 xl:grid-cols-3'
                 data-fade='5'
               >
-                {ourLives.map((snippet, i) => (
+                {ourLives.map((ourLife, i) => (
                   <OurLifeCard
-                    key={snippet.title}
+                    key={ourLife.title}
                     snippet={{
-                      ...snippet,
-                      icon: icons[snippet.icon || 'BsHouseDoor'],
+                      ...ourLife,
+                      icon: icons[ourLife.icon || 'BsHouseDoor'],
                     }}
                     index={i}
                   />

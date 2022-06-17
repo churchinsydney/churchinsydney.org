@@ -52,11 +52,9 @@ export default function ContactUsCard({
   };
 
   return (
-    <div
-      className={clsx('rounded border p-10 dark:border-gray-600', className)}
-    >
+    <div className={clsx('rounded p-10', className)}>
       <h3 className='mt-2'>
-        <Accent>{title ?? t['contact-us-title']}</Accent> {'👋 '}
+        <Accent>{title ?? t['contact-us-title']}</Accent>
       </h3>
       <div className='mt-2 flex flex-col gap-10 md:flex-row'>
         <div className='basis-1/2'>
@@ -126,8 +124,6 @@ export default function ContactUsCard({
               <div className='group relative right-2'>
                 <div
                   className={clsx(
-                    'absolute -inset-0.5 animate-tilt rounded blur',
-                    'bg-gradient-to-r from-primary-300 to-primary-400',
                     'dark:from-primary-200 dark:via-primary-300',
                     'opacity-75 transition duration-1000 group-hover:opacity-100 group-hover:duration-200'
                   )}
