@@ -3,6 +3,13 @@ export type EvenDate = {
   endDate: string;
 };
 
+export type ContactUsFormData = {
+  name: string;
+  email: string;
+  message: string;
+  phone: string;
+};
+
 export type PostType = {
   banner: string;
   slug: string;

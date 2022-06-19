@@ -1,4 +1,3 @@
-import axios, { AxiosError } from 'axios';
 import clsx from 'clsx';
 import * as React from 'react';
 import { useForm } from 'react-hook-form';
@@ -7,6 +6,8 @@ import Accent from '@/components/Accent';
 import Button from '@/components/buttons/Button';
 
 import { AppContext } from '@/context/AppContext';
+
+import { ContactUsFormData } from '@/types/types';
 
 type ContactUsCardProps = {
   className?: string;
@@ -20,34 +21,21 @@ export default function ContactUsCard({
   description,
 }: ContactUsCardProps) {
   const { translations: t } = React.useContext(AppContext);
-  const { register, handleSubmit, reset } = useForm<{ email: string }>();
+  const { register, handleSubmit, reset } = useForm<ContactUsFormData>();
   const [status, setStatus] = React.useState('idle');
 
-  const onSubmit = async (data: { email: string }) => {
+  const onSubmit = async (data: ContactUsFormData) => {
     setStatus('loading');
-
-    axios
-      .post<{ message: string }>('/api/newsletter/add', {
-        email: data.email,
-      })
+    fetch('/api/contact-us', {
+      method: 'post',
+      body: JSON.stringify(data),
+    })
       .then(() => {
         reset();
-        // if (subscriber?.count) mutate({ count: subscriber.count + 1 });
         setStatus('success');
       })
-      .catch((error: Error | AxiosError) => {
-        if (axios.isAxiosError(error)) {
-          // if (error?.response?.data?.message?.includes('subscribed')) {
-          //   setStatus('subscribed');
-          // } else {
-          //   setStatus('error');
-          //   setErrMsg(
-          //     error.response?.data.message ?? 'Something is wrong with the API.'
-          //   );
-          // }
-        } else {
-          setStatus('error');
-        }
+      .catch(() => {
+        setStatus('error');
       });
   };
 
@@ -70,7 +58,7 @@ export default function ContactUsCard({
         >
           <div className='space-y-5'>
             <input
-              {...register('email')}
+              {...register('name')}
               className={clsx(
                 'mt-2',
                 'w-full rounded-md dark:bg-dark',
@@ -83,7 +71,7 @@ export default function ContactUsCard({
               required
             />
             <input
-              {...register('email')}
+              {...register('phone')}
               className={clsx(
                 'mt-2',
                 'w-full rounded-md dark:bg-dark',
@@ -109,7 +97,7 @@ export default function ContactUsCard({
               required
             />
             <textarea
-              {...register('email')}
+              {...register('message')}
               className={clsx(
                 'mt-2',
                 'h-40',
