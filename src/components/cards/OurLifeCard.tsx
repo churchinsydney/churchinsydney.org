@@ -30,11 +30,8 @@ export default function OurLifeCard({
     >
       <div className='block h-full rounded-md focus:outline-none focus-visible:ring focus-visible:ring-primary-300'>
         <div className='p-4'>
-          <div className=''>
-            <snippet.icon
-              size={'50px'}
-              className='align-middle text-gray-600 hover:text-primary-300 dark:text-gray-300 dark:hover:text-primary-300'
-            />
+          <div>
+            <snippet.icon size={'50px'} className='icon align-middle' />
           </div>
           <h3 className='mt-5 text-gray-800 dark:text-gray-100'>
             {snippet.title}

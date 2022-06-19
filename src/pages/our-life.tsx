@@ -1,10 +1,6 @@
 import clsx from 'clsx';
 import * as React from 'react';
-import { BsHouseDoor, BsMoonStars, BsPeople } from 'react-icons/bs';
-import { FaGraduationCap } from 'react-icons/fa';
-import { GiVineLeaf } from 'react-icons/gi';
 import { IconType } from 'react-icons/lib';
-import { MdOutlineEmojiPeople } from 'react-icons/md';
 
 import useLoaded from '@/hooks/useLoaded';
 
@@ -20,16 +16,21 @@ import {
   getTranslationsByNamespace,
 } from '@/cms';
 import { AppContext } from '@/context/AppContext';
+import IconBook from '@/icons/Book.svg';
+import IconChildren from '@/icons/Children.svg';
+import IconHome from '@/icons/Home.svg';
+import IconPizza from '@/icons/Pizza.svg';
+import IconPublic from '@/icons/Public.svg';
+import IconUni from '@/icons/Uni.svg';
 
 import { Links, ourLife, Settings, Translations } from '@/types/types';
-
 const icons = {
-  BsHouseDoor: BsHouseDoor,
-  BsMoonStars: BsMoonStars,
-  BsPeople: BsPeople,
-  MdOutlineEmojiPeople: MdOutlineEmojiPeople,
-  GiVineLeaf: GiVineLeaf,
-  FaGraduationCap: FaGraduationCap,
+  Book: IconBook,
+  Children: IconChildren,
+  Home: IconHome,
+  Pizza: IconPizza,
+  Uni: IconUni,
+  Public: IconPublic,
 } as { [key: string]: IconType };
 
 export default function OurLifePage({
@@ -75,7 +76,7 @@ export default function OurLifePage({
                     key={ourLife.title}
                     snippet={{
                       ...ourLife,
-                      icon: icons[ourLife.icon || 'BsHouseDoor'],
+                      icon: icons[ourLife.icon || 'Home'],
                     }}
                     index={i}
                   />
