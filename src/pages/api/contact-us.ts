@@ -33,6 +33,7 @@ export default async function handler(
   try {
     await mail.send(msg);
     res.status(200).json({ status: 'OK' });
+    // res.status(500).json({ status: 'ERROR' });
   } catch (error: unknown) {
     // eslint-disable-next-line no-console
     console.error(JSON.stringify(error, null, 2));

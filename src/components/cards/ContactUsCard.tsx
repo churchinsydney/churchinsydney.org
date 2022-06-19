@@ -1,13 +1,14 @@
 import clsx from 'clsx';
-import * as React from 'react';
+import { useContext, useState } from 'react';
 import { useForm } from 'react-hook-form';
 
 import Accent from '@/components/Accent';
 import Button from '@/components/buttons/Button';
+import ButtonStatus from '@/components/buttons/ButtonStatus';
 
 import { AppContext } from '@/context/AppContext';
 
-import { ContactUsFormData } from '@/types/types';
+import { ContactUsFormData, statusType } from '@/types/types';
 
 type ContactUsCardProps = {
   className?: string;
@@ -20,9 +21,9 @@ export default function ContactUsCard({
   title,
   description,
 }: ContactUsCardProps) {
-  const { translations: t } = React.useContext(AppContext);
+  const { translations: t } = useContext(AppContext);
   const { register, handleSubmit, reset } = useForm<ContactUsFormData>();
-  const [status, setStatus] = React.useState('idle');
+  const [status, setStatus] = useState<statusType>('idle');
 
   const onSubmit = async (data: ContactUsFormData) => {
     setStatus('loading');
@@ -30,11 +31,16 @@ export default function ContactUsCard({
       method: 'post',
       body: JSON.stringify(data),
     })
-      .then(() => {
-        reset();
-        setStatus('success');
+      .then(function (response) {
+        if (response.ok) {
+          reset();
+          setStatus('success');
+          return;
+        }
+
+        setStatus('error');
       })
-      .catch(() => {
+      .catch(function () {
         setStatus('error');
       });
   };
@@ -114,8 +120,6 @@ export default function ContactUsCard({
               <div className='group relative right-2'>
                 <div
                   className={clsx(
-                    'absolute -inset-0.5 animate-tilt rounded blur',
-                    'bg-gradient-to-r from-primary-300 to-primary-400',
                     'dark:from-primary-200 dark:via-primary-300',
                     'opacity-75 transition duration-1000 group-hover:opacity-100 group-hover:duration-200'
                   )}
@@ -123,9 +127,10 @@ export default function ContactUsCard({
                 <Button
                   type='submit'
                   isLoading={status === 'loading'}
-                  className=''
+                  className='inline-flex items-center px-5 py-2.5 text-center text-sm'
+                  disabled={status !== 'idle'}
                 >
-                  {t['common-submit']}
+                  <ButtonStatus setStatus={setStatus} status={status} />
                 </Button>
               </div>
             </div>
