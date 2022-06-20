@@ -33,10 +33,14 @@ export default function OurBeliefsPage({
     text: '',
     ref: '',
   };
+
   return (
     <AppContext.Provider value={{ translations, links, settings }}>
       <Layout>
-        <Seo templateTitle='Our Beliefs' description='' />
+        <Seo
+          templateTitle={translations['common-our-belief']}
+          description={translations['common-our-belief']}
+        />
 
         <main>
           <section className={clsx(isLoaded && 'fade-in-start')}>
