@@ -1,15 +1,29 @@
 export function getLocaleValue<T>(field: T) {
+  if (Object.keys(field).length > 1) {
+    return Object.values(field)[0] || Object.values(field)[1];
+  }
   return Object.values(field)[0];
 }
 
 export type GraphQlLocalFieldType = { en: string; zh: string };
 
+export const LOCALE_KEYS = {
+  EN: 'en',
+  ZH: 'zh',
+};
+
 export function isEnglish(locale: string) {
   return locale === 'en';
 }
-export const localeField = (locale: string) => `
-    en @include(if: ${isEnglish(locale)})
-    zh @skip(if: ${isEnglish(locale)})
+export const localeField = (locale: string, defaultToEnglish = false) =>
+  defaultToEnglish
+    ? `
+    ${!isEnglish(locale) ? LOCALE_KEYS.ZH : ''}
+    ${LOCALE_KEYS.EN}
+    `
+    : `
+    ${LOCALE_KEYS.EN} @include(if: ${isEnglish(locale)})
+    ${LOCALE_KEYS.ZH} @skip(if: ${isEnglish(locale)})
   `;
 
 export const transformLocaleFields =
