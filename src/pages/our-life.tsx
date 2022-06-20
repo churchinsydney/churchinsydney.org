@@ -71,16 +71,19 @@ export default function OurLifePage({
                 className='mt-12 grid gap-4 sm:grid-cols-2 xl:grid-cols-3'
                 data-fade='5'
               >
-                {ourLives.map((ourLife, i) => (
-                  <OurLifeCard
-                    key={ourLife.title}
-                    snippet={{
-                      ...ourLife,
-                      icon: icons[ourLife.icon || 'Home'],
-                    }}
-                    index={i}
-                  />
-                ))}
+                {ourLives.map(
+                  (ourLife, i) =>
+                    !ourLife.isHeader && (
+                      <OurLifeCard
+                        key={ourLife.title}
+                        snippet={{
+                          ...ourLife,
+                          icon: icons[ourLife.icon || 'Home'],
+                        }}
+                        index={i}
+                      />
+                    )
+                )}
               </ul>
             </div>
           </section>
