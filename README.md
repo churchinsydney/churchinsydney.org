@@ -15,6 +15,8 @@
 
 ## Development
 
+Update the values in .env.local
+
 First, run the development server:
 
 ```bash
