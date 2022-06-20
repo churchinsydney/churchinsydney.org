@@ -10,7 +10,7 @@
 - Nextjs
 - Typescript
 - Tailwind CSS
-- graphCMS
+- Webiny Headless CMS
 - Netlify
 
 ## Development
