@@ -16,7 +16,6 @@ interface RenderHeaderProps {
 }
 
 const renderHeader = (block: OutputBlockData) => {
-  console.log('header', JSON.stringify(block, null, 2));
   const props: RenderHeaderProps = { style: {}, className: '' };
 
   if (block.data.textAlign) {
@@ -40,7 +39,7 @@ const renderHeader = (block: OutputBlockData) => {
       )}
       id={id}
     >
-      <CustomLink href={`#${id}`}>
+      <CustomLink href={`#${id}`} className='hash-anchor'>
         <span className='icon icon-link'></span>
       </CustomLink>
       {block.data.text}
@@ -49,9 +48,7 @@ const renderHeader = (block: OutputBlockData) => {
 };
 
 const renderers: Record<string, RichTextBlockRenderer> = {
-  // Override the default renderer for "delimiter" block
   header: renderHeader,
-  // Add a renderer for "youtube" block
 };
 
 export default function RichTextRenderer({

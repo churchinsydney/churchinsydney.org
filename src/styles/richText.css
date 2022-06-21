@@ -2,10 +2,6 @@
   max-width: 50rem;
 }
 
-.prose code:not(:where([data-code-type='code-block'])) {
-  @apply rounded-md border px-1 py-1 dark:border-gray-600;
-}
-
 .prose a {
   text-decoration: none;
 }
@@ -36,7 +32,7 @@
   border-image: linear-gradient(to right, #00ff9480, #00e0f380, #00c4fd80) 1;
 }
 
-.mdx.prose :where(h1, h2, h3, h4) {
+.rich-text.prose :where(h1, h2, h3, h4) {
   scroll-margin-top: 100px;
   position: relative;
   display: block;
@@ -45,24 +41,19 @@
   width: fit-content;
 }
 
-.mdx.prose :where(h1, h2, h3, h4) > a {
+.rich-text.prose :where(h1, h2, h3, h4) > a {
   border-bottom: none;
 }
 
 /* Custom Heading Style for Projects */
-.mdx.prose.projects blockquote {
+.rich-text.prose.projects blockquote {
   font-style: normal;
 }
-.mdx.prose.projects blockquote:first-of-type h2 {
+.rich-text.prose.projects blockquote:first-of-type h2 {
   margin-top: 1rem;
 }
-.mdx.prose.projects blockquote.with-icons h2 {
+.rich-text.prose.projects blockquote.with-icons h2 {
   margin-bottom: 0;
-}
-
-/* Apply shadow to Youtube Embed */
-.mdx.prose .yt-lite {
-  @apply overflow-hidden rounded shadow-sm dark:shadow-none;
 }
 
 /** HASH ANCHOR */

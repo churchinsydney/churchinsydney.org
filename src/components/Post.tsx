@@ -7,12 +7,12 @@ import useScrollSpy from '@/hooks/useScrollspy';
 
 import Accent from '@/components/Accent';
 import PostCard from '@/components/cards/PostCard';
+import RichTextRenderer from '@/components/content/richTextRenderer';
 import TableOfContents, {
   HeadingScrollSpy,
 } from '@/components/content/TableOfContents';
 import Image from '@/components/images/Image';
 import Layout from '@/components/layout/Layout';
-import RichTextRenderer from '@/components/richTextRenderer';
 import Seo from '@/components/Seo';
 
 import { DATE_FORMAT, IMAGE_SIZE } from '@/constants';
@@ -95,7 +95,7 @@ export default function Post({ post, recommendations }: PostProps) {
             <section className='lg:grid lg:grid-cols-[auto,250px] lg:gap-8'>
               <article
                 id='post-content'
-                className='prose mx-auto mt-4 w-full transition-colors dark:prose-invert'
+                className='rich-text prose mx-auto mt-4 w-full transition-colors dark:prose-invert'
               >
                 <RichTextRenderer data={post.content} />
               </article>
