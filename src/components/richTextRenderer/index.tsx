@@ -40,9 +40,10 @@ const renderHeader = (block: OutputBlockData) => {
       )}
       id={id}
     >
-      <CustomLink href={`#${id}`} id={id}>
-        {block.data.text}
+      <CustomLink href={`#${id}`}>
+        <span className='icon icon-link'></span>
       </CustomLink>
+      {block.data.text}
     </Heading>
   );
 };
