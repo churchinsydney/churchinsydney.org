@@ -60,9 +60,6 @@ export default function IndexPage({
               <h1
                 className='mt-1 text-3xl md:text-5xl 2xl:text-6xl'
                 data-fade='2'
-                style={{
-                  lineHeight: '4rem',
-                }}
               >
                 <Trans
                   text={translations['home-verse']}
@@ -167,7 +164,7 @@ export default function IndexPage({
               </section>
             )}
           </InView>
-          {currentEvents.length && (
+          {currentEvents.length > 0 && (
             <InView triggerOnce rootMargin='-40% 0px'>
               {({ ref, inView }) => (
                 <section
