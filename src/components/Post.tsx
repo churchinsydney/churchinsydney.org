@@ -35,10 +35,12 @@ export default function Post({ post, recommendations }: PostProps) {
     toc?.reduce((min, item) => (item.level < min ? item.level : min), 10) ?? 0;
 
   useEffect(() => {
-    const headings = document.querySelectorAll('h1, h2, h3');
+    const headings = document
+      ?.querySelector('#post-content')
+      ?.querySelectorAll('h1, h2, h3');
 
     const headingArr: HeadingScrollSpy = [];
-    headings.forEach((heading) => {
+    headings?.forEach((heading) => {
       const id = heading.id;
       const level = +heading.tagName.replace('H', '');
       const text = heading.textContent + '';
@@ -91,7 +93,10 @@ export default function Post({ post, recommendations }: PostProps) {
             <hr className='dark:border-gray-600' />
 
             <section className='lg:grid lg:grid-cols-[auto,250px] lg:gap-8'>
-              <article className='prose mx-auto mt-4 w-full transition-colors dark:prose-invert'>
+              <article
+                id='post-content'
+                className='prose mx-auto mt-4 w-full transition-colors dark:prose-invert'
+              >
                 <RichTextRenderer data={post.content} />
               </article>
 

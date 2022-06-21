@@ -1,6 +1,10 @@
+import { isEmpty } from 'lodash';
+
 export function getLocaleValue<T>(field: T) {
   if (Object.keys(field).length > 1) {
-    return Object.values(field)[0] || Object.values(field)[1];
+    return isEmpty(Object.values(field)[0])
+      ? Object.values(field)[1]
+      : Object.values(field)[0];
   }
   return Object.values(field)[0];
 }
