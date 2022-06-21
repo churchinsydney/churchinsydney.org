@@ -1,4 +1,3 @@
-import { RichTextRenderer } from '@webiny/react-rich-text-renderer';
 import clsx from 'clsx';
 import { format, formatDistanceToNow, isSameDay } from 'date-fns';
 import { useContext, useEffect, useState } from 'react';
@@ -13,6 +12,7 @@ import TableOfContents, {
 } from '@/components/content/TableOfContents';
 import Image from '@/components/images/Image';
 import Layout from '@/components/layout/Layout';
+import RichTextRenderer from '@/components/richTextRenderer';
 import Seo from '@/components/Seo';
 
 import { DATE_FORMAT, IMAGE_SIZE } from '@/constants';
