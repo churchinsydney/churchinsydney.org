@@ -62,7 +62,7 @@ export default function Post({ post, recommendations }: PostProps) {
       />
 
       <main>
-        <section className=''>
+        <section>
           <div className='layout'>
             <div className='pb-4 dark:border-gray-600'>
               <Image url={post.banner} alt={post.slug} {...IMAGE_SIZE} />
