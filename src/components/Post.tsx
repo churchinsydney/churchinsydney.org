@@ -70,7 +70,7 @@ export default function Post({ post, recommendations }: PostProps) {
               <h1 className='mt-4'>{post.title}</h1>
 
               {eventDate && (
-                <p className='mt-2 text-2xl italic text-gray-600 dark:text-gray-300'>
+                <p className='mt-4 text-2xl italic text-gray-600 dark:text-gray-300'>
                   {eventDate}
                 </p>
               )}
