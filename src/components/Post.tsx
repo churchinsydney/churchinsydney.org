@@ -1,13 +1,15 @@
 import clsx from 'clsx';
 import { format, formatDistanceToNow, isSameDay } from 'date-fns';
-import { useContext, useEffect, useState } from 'react';
+import { getMDXComponent } from 'mdx-bundler/client';
+import { useContext, useEffect, useMemo, useState } from 'react';
 
 import { formatEventDate } from '@/lib/utils';
 import useScrollSpy from '@/hooks/useScrollspy';
 
 import Accent from '@/components/Accent';
 import PostCard from '@/components/cards/PostCard';
-import RichTextRenderer from '@/components/content/richTextRenderer';
+import MDXComponents from '@/components/content/MDXComponents';
+import RichTextRenderer from '@/components/content/RichTextRenderer';
 import TableOfContents, {
   HeadingScrollSpy,
 } from '@/components/content/TableOfContents';
@@ -18,7 +20,7 @@ import Seo from '@/components/Seo';
 import { DATE_FORMAT, IMAGE_SIZE } from '@/constants';
 import { AppContext } from '@/context/AppContext';
 
-import { PostType } from '@/types/types';
+import { OutputBlockData, PostType } from '@/types/types';
 
 type PostProps = {
   post: PostType;
@@ -28,6 +30,12 @@ type PostProps = {
 export default function Post({ post, recommendations }: PostProps) {
   const { translations: t } = useContext(AppContext);
   const [toc, setToc] = useState<HeadingScrollSpy>([]);
+
+  console.log(JSON.stringify(post.content, null, 2));
+  const Component = useMemo(
+    () => (post.isMarkdown ? getMDXComponent(post.content as string) : null),
+    [post.content, post.isMarkdown]
+  );
 
   const activeSection = useScrollSpy();
 
@@ -97,7 +105,18 @@ export default function Post({ post, recommendations }: PostProps) {
                 id='post-content'
                 className='rich-text prose mx-auto mt-4 w-full transition-colors dark:prose-invert'
               >
-                <RichTextRenderer data={post.content} />
+                {Component ? (
+                  <Component
+                    components={
+                      {
+                        ...MDXComponents,
+                        // eslint-disable-next-line @typescript-eslint/no-explicit-any
+                      } as any
+                    }
+                  />
+                ) : (
+                  <RichTextRenderer data={post.content as OutputBlockData[]} />
+                )}
               </article>
 
               <aside className='py-4'>

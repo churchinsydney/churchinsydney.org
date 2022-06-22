@@ -19,7 +19,7 @@ export type PostType = {
   slug: string;
   title: string;
   description: string;
-  content: OutputBlockData[];
+  content: OutputBlockData[] | string;
   savedOn: string;
   createdOn: string;
   tags: string[];
@@ -27,6 +27,7 @@ export type PostType = {
   rank: number | null;
   hidden: boolean;
   eventDate?: EvenDate;
+  isMarkdown: boolean;
 };
 
 export type Translation = {

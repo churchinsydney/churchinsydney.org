@@ -2,6 +2,8 @@ import { GRAPHQL_QUERY_LIMIT } from '@/constants';
 
 export * from './settings';
 
+import { parseMDX } from '@/lib/mdx';
+
 import {
   getLocaleValue,
   GraphQlLocalFieldType,
@@ -37,6 +39,7 @@ function postFields(locale: string) {
       hidden
       rank
       likes
+      isMarkdown
       eventDate {
         start
         end
@@ -52,6 +55,15 @@ type GraphQlPostType = {
   tags: { name: GraphQlLocalFieldType }[];
 } & Omit<PostType, 'title' | 'description' | 'content' | 'tags'>;
 
+type RichTextFieldType = {
+  id: string;
+  type: string;
+  data: {
+    text: string;
+    textAlign: string;
+    className: string;
+  };
+};
 function replaceMediaUrlDomain(url: string) {
   const _url = new URL(url);
   if (process.env.NEXT_PUBLIC_WEBINY_MEDIA_URL) {
@@ -59,17 +71,30 @@ function replaceMediaUrlDomain(url: string) {
   }
   return _url.href;
 }
-function transformPost(post: GraphQlPostType): PostType {
+
+async function transformPost(post: GraphQlPostType): Promise<PostType> {
   const tags = post.tags as unknown as { name: GraphQlLocalFieldType }[];
-  return {
+  const transformedPost = {
+    ...post,
     ...transformLocaleFields(['title', 'description', 'content'])(post),
     banner: replaceMediaUrlDomain(post.banner),
     tags: tags?.map((tag) => getLocaleValue(tag.name)),
-  } as PostType;
+  };
+
+  if (transformedPost.isMarkdown) {
+    const mdxText = transformedPost.content.reduce(
+      (mdx: string, item: RichTextFieldType) =>
+        `${mdx.trim()}\n\n${item.data.text.trim()}`,
+      ''
+    );
+    transformedPost.content = await parseMDX(mdxText);
+  }
+
+  return transformedPost;
 }
 
-function transformPosts(posts: GraphQlPostType[]): PostType[] {
-  return posts.map(transformPost);
+async function transformPosts(posts: GraphQlPostType[]): Promise<PostType[]> {
+  return await Promise.all(posts.map(transformPost));
 }
 
 export async function getPostsByTags(tags: string[], locale: string) {
