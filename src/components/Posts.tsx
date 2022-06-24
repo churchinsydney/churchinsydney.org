@@ -98,7 +98,9 @@ export default function Posts({
         search
           .toLowerCase()
           .split(' ')
-          .every((tag) => post.tags.includes(tag))
+          .every((tag) =>
+            post.tags.map((t) => t.toLowerCase()).includes(tag.toLowerCase())
+          )
     );
 
     if (sortOrder.id === 'start-date') {
@@ -119,7 +121,7 @@ export default function Posts({
       });
     } else if (sortOrder.id === 'rank') {
       results.sort(sortDateFn).sort((a, b) => {
-        return (a.rank ?? LAST_ORDER_INDEX) - (b.rank ?? LAST_ORDER_INDEX);
+        return (b.rank ?? LAST_ORDER_INDEX) - (a.rank ?? LAST_ORDER_INDEX);
       });
     } else if (sortOrder.id === 'date-desc') {
       results.sort(sortDateFn);
