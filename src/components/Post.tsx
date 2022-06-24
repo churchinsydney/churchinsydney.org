@@ -9,7 +9,6 @@ import useScrollSpy from '@/hooks/useScrollspy';
 import Accent from '@/components/Accent';
 import PostCard from '@/components/cards/PostCard';
 import MDXComponents from '@/components/content/MDXComponents';
-import RichTextRenderer from '@/components/content/RichTextRenderer';
 import TableOfContents, {
   HeadingScrollSpy,
 } from '@/components/content/TableOfContents';
@@ -20,7 +19,7 @@ import Seo from '@/components/Seo';
 import { DATE_FORMAT, IMAGE_SIZE } from '@/constants';
 import { AppContext } from '@/context/AppContext';
 
-import { OutputBlockData, PostType } from '@/types/types';
+import { PostType } from '@/types/types';
 
 type PostProps = {
   post: PostType;
@@ -31,10 +30,9 @@ export default function Post({ post, recommendations }: PostProps) {
   const { translations: t } = useContext(AppContext);
   const [toc, setToc] = useState<HeadingScrollSpy>([]);
 
-  console.log(JSON.stringify(post.content, null, 2));
   const Component = useMemo(
-    () => (post.isMarkdown ? getMDXComponent(post.content as string) : null),
-    [post.content, post.isMarkdown]
+    () => getMDXComponent(post.body as string),
+    [post.body]
   );
 
   const activeSection = useScrollSpy();
@@ -57,16 +55,17 @@ export default function Post({ post, recommendations }: PostProps) {
     });
 
     setToc(headingArr);
-  }, [post.content]);
+  }, [post.body]);
 
-  const eventDate = post?.eventDate ? formatEventDate(post?.eventDate) : null;
+  const eventDate =
+    post.start && post.end ? formatEventDate(post.start, post.end) : null;
 
   return (
     <Layout>
       <Seo
         templateTitle={post.title}
-        description={post.description}
-        date={new Date(post.createdOn).toISOString()}
+        description={post.summary}
+        date={new Date(post.dateCreated).toISOString()}
       />
 
       <main>
@@ -82,15 +81,15 @@ export default function Post({ post, recommendations }: PostProps) {
                   {eventDate}
                 </p>
               )}
-              {post.savedOn && (
-                <div className='mt-4 flex flex-wrap gap-2 text-sm italic text-gray-700 dark:text-gray-200'>
+              {post.dateUpdated && (
+                <div className='mt-2 flex flex-wrap gap-2 text-sm italic text-gray-400 dark:text-gray-500'>
                   <p>
                     {t['post-last-updated']}:{' '}
                     {!isSameDay(
-                      new Date(post.createdOn),
-                      new Date(post.savedOn)
-                    ) && `${format(new Date(post.createdOn), DATE_FORMAT)}, `}
-                    {`${formatDistanceToNow(new Date(post.savedOn))} ${
+                      new Date(post.dateCreated),
+                      new Date(post.dateUpdated)
+                    ) && `${format(new Date(post.dateCreated), DATE_FORMAT)}, `}
+                    {`${formatDistanceToNow(new Date(post.dateUpdated))} ${
                       t['post-ago']
                     }`}
                   </p>
@@ -105,18 +104,14 @@ export default function Post({ post, recommendations }: PostProps) {
                 id='post-content'
                 className='rich-text prose mx-auto mt-4 w-full transition-colors dark:prose-invert'
               >
-                {Component ? (
-                  <Component
-                    components={
-                      {
-                        ...MDXComponents,
-                        // eslint-disable-next-line @typescript-eslint/no-explicit-any
-                      } as any
-                    }
-                  />
-                ) : (
-                  <RichTextRenderer data={post.content as OutputBlockData[]} />
-                )}
+                <Component
+                  components={
+                    {
+                      ...MDXComponents,
+                      // eslint-disable-next-line @typescript-eslint/no-explicit-any
+                    } as any
+                  }
+                />
               </article>
 
               <aside className='py-4'>

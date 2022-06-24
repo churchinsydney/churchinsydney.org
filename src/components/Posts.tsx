@@ -92,8 +92,8 @@ export default function Posts({
     const results = posts.filter(
       (post) =>
         post.title.toLowerCase().includes(search.toLowerCase()) ||
-        (post?.description &&
-          post?.description.toLowerCase().includes(search.toLowerCase())) ||
+        (post?.summary &&
+          post?.summary.toLowerCase().includes(search.toLowerCase())) ||
         // Check if splitted search contained in tag
         search
           .toLowerCase()
@@ -103,19 +103,18 @@ export default function Posts({
 
     if (sortOrder.id === 'start-date') {
       results.sort((a, b) => {
-        if (!a?.eventDate && !b?.eventDate) {
+        if (!a?.start && !b?.start) {
           return 0;
           // sort b before a
-        } else if (!a?.eventDate && b?.eventDate) {
+        } else if (!a?.start && b?.start) {
           return 1;
         } // sort a before b
-        else if (!b?.eventDate && a?.eventDate) {
+        else if (!b?.start && a?.start) {
           return -1;
         }
 
         return (
-          new Date(a?.eventDate?.start ?? 0).valueOf() -
-          new Date(b?.eventDate?.start ?? 0).valueOf()
+          new Date(a?.start ?? 0).valueOf() - new Date(b?.start ?? 0).valueOf()
         );
       });
     } else if (sortOrder.id === 'rank') {

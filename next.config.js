@@ -11,7 +11,7 @@ module.exports = {
     return config;
   },
   images: {
-    domains: ['media.churchinsydney.org'],
+    domains: ['media.churchinsydney.org', 'hyjo51vx.directus.app'],
   },
   i18n: {
     locales: ['en', 'zh-CN'], // Array with the languages that you want to use
