@@ -3,7 +3,7 @@ import { useContext, useEffect, useState } from 'react';
 import useMediaQuery from '@/hooks/useMediaQuery';
 
 import { headerLinks } from '@/components/layout/Header';
-import UnstyledLink from '@/components/links/UnstyledLink';
+import UnStyledLink from '@/components/links/UnStyledLink';
 import Tooltip from '@/components/tooltip/Tooltip';
 
 import { AppContext } from '@/context/AppContext';
@@ -30,15 +30,24 @@ export default function FooterLinks() {
     ];
   }
   return (
-    <div className='flex flex-wrap justify-center gap-y-4 gap-x-8'>
+    <div
+      className='flex flex-wrap justify-center gap-y-4 gap-x-8'
+      aria-label='footer label'
+    >
       {links?.map(({ href, text, tooltip }) => (
-        <Tooltip interactive={false} key={href} content={tooltip}>
-          <UnstyledLink
+        <Tooltip
+          interactive={false}
+          key={href}
+          content={tooltip}
+          aria-label='tooltip'
+        >
+          <UnStyledLink
             className='animated-underline rounded-sm text-sm font-medium focus:outline-none focus-visible:ring focus-visible:ring-primary-300 dark:text-gray-200'
             href={href}
+            aria-label={text.toLowerCase()}
           >
             {text}
-          </UnstyledLink>
+          </UnStyledLink>
         </Tooltip>
       ))}
     </div>

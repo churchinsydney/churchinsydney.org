@@ -8,7 +8,7 @@ export interface TranslationQuery {
 }
 
 export interface TransProps {
-  text: string;
+  text: string| null;
   components?: ReactElement[] | Record<string, ReactElement>;
 }
 /**
@@ -17,6 +17,9 @@ export interface TransProps {
  * to -> <h1>This is an <b>example</b><h1>
  */
 export default function Trans({ components, text }: TransProps): JSX.Element {
+  if(!text) {
+    return <div/>;
+  }
   /**
    * Memoize the transformation
    */

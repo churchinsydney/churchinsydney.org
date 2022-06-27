@@ -15,7 +15,7 @@ type GraphQLResponse = {
 
 export async function getEmailTemplateBySlug(
   emailTemplateSlug: string,
-  contactUstoEmailKey: string
+  contactUsToEmailKey: string
 ) {
   const {
     email_templates: {
@@ -26,18 +26,21 @@ export async function getEmailTemplateBySlug(
     },
   } = (await request({
     document: gql`
-      query ($emailTemplateSlug: String!, $contactUstoEmailKey: String!) {
+      query GetEmailTemplateBySlug(
+        $emailTemplateSlug: String!
+        $contactUsToEmailKey: String!
+      ) {
         email_templates(filter: { slug: { _eq: $emailTemplateSlug } }) {
           template
         }
-        settings(filter: { key: { _eq: $contactUstoEmailKey } }) {
+        settings(filter: { key: { _eq: $contactUsToEmailKey } }) {
           toEmail: value
         }
       }
     `,
     variables: {
       emailTemplateSlug,
-      contactUstoEmailKey,
+      contactUsToEmailKey,
     },
   })) as GraphQLResponse;
 

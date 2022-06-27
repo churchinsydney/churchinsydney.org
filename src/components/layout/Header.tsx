@@ -4,7 +4,7 @@ import { useContext, useEffect, useState } from 'react';
 
 import useMediaQuery from '@/hooks/useMediaQuery';
 
-import UnstyledLink from '@/components/links/UnstyledLink';
+import UnstyledLink from '@/components/links/UnStyledLink';
 
 import { AppContext } from '@/context/AppContext';
 

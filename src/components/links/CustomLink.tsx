@@ -1,6 +1,6 @@
 import clsx from 'clsx';
 
-import UnstyledLink, { UnstyledLinkProps } from './UnstyledLink';
+import UnstyledLink, { UnstyledLinkProps } from './UnStyledLink';
 
 export default function CustomLink({
   children,

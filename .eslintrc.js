@@ -3,6 +3,7 @@ module.exports = {
     browser: true,
     es2021: true,
     node: true,
+    jest
   },
   plugins: ['@typescript-eslint', 'simple-import-sort'],
   extends: [

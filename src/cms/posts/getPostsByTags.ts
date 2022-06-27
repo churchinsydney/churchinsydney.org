@@ -12,7 +12,7 @@ export async function getPostsByTags(
 ): Promise<PostType[]> {
   const { posts } = (await request({
     document: gql`
-      query ($locale: String!) {
+      query GetPostsByTags($locale: String!) {
         posts(
           filter: {
             _or: [
@@ -31,6 +31,8 @@ export async function getPostsByTags(
       locale,
     },
   })) as { posts: PostsGraphQLResponse };
+
+  console.log(JSON.stringify(posts, null, 2));
 
   return transformPosts(posts);
 }

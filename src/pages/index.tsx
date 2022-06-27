@@ -10,7 +10,7 @@ import PostCard from '@/components/cards/PostCard';
 import HeroImage from '@/components/images/HeroImage';
 import Layout from '@/components/layout/Layout';
 import ButtonLink from '@/components/links/ButtonLink';
-import UnstyledLink from '@/components/links/UnstyledLink';
+import UnStyledLink from '@/components/links/UnStyledLink';
 import Seo from '@/components/Seo';
 import Trans from '@/components/translation/Trans';
 
@@ -91,7 +91,7 @@ export default function IndexPage({
                 </div>
               </div>
             </article>
-            <UnstyledLink
+            <UnStyledLink
               href='#intro'
               className={clsx(
                 'absolute bottom-2 left-1/2 -translate-x-1/2 md:bottom-10',
@@ -100,7 +100,7 @@ export default function IndexPage({
               )}
             >
               <IoArrowDownOutline className='h-8 w-8 animate-bounce md:h-10 md:w-10' />
-            </UnstyledLink>
+            </UnStyledLink>
             {settings['show-hero-image'] === 'true' && (
               <HeroImage
                 className={clsx(
@@ -142,6 +142,7 @@ export default function IndexPage({
                     <ul className='relative h-full'>
                       {featuredPosts.length > 1 && (
                         <PostCard
+                          aria-label='featured post 1'
                           className={clsx(
                             'absolute max-w-[350px] transform-gpu',
                             'top-1/2 translate-y-[-55%] md:translate-y-[-50%] lg:translate-y-[-60%]',
@@ -154,6 +155,7 @@ export default function IndexPage({
                       )}
                       {featuredPosts.length > 0 && (
                         <PostCard
+                          aria-label='featured post 2'
                           className='mx-auto max-w-[350px]'
                           post={featuredPosts[0]}
                         />

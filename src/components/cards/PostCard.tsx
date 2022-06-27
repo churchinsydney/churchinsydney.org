@@ -7,7 +7,7 @@ import { formatEventDate } from '@/lib/utils';
 import Accent from '@/components/Accent';
 import Tag from '@/components/content/Tag';
 import PostCardImage from '@/components/images/PostCardImage';
-import UnstyledLink from '@/components/links/UnstyledLink';
+import UnStyledLink from '@/components/links/UnStyledLink';
 
 import { AppContext } from '@/context/AppContext';
 
@@ -39,7 +39,7 @@ export default function PostCard({
       )}
       onClick={onClick}
     >
-      <UnstyledLink
+      <UnStyledLink
         className='block h-full rounded-md focus:outline-none focus-visible:ring focus-visible:ring-primary-300'
         href={`/post/${post.slug}`}
       >
@@ -79,7 +79,7 @@ export default function PostCard({
             )}
           </p>
         </div>
-      </UnstyledLink>
+      </UnStyledLink>
     </li>
   );
 }

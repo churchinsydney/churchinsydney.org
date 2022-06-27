@@ -14,7 +14,7 @@ type GraphQLResponse = {
 export async function getSettings(): Promise<Settings> {
   const { settings } = (await request({
     document: gql`
-      {
+      query GetSettings {
         settings {
           key
           value
