@@ -1,12 +1,16 @@
+import { TextEncoder } from 'util';
 import '@testing-library/jest-dom';
 import '@testing-library/jest-dom/extend-expect';
 import 'intersection-observer';
 import 'whatwg-fetch';
+
 import { server } from './test/__mocks__/network/server';
 
-import { TextEncoder } from 'util';
+process.env.CMS_API_ENDPOINT = 'https://backend';
+process.env.CMS_API_USERNAME = 'user';
+process.env.CMS_API_PASSWORD = 'password';
+
 global.TextEncoder = TextEncoder;
-// global.TextDecoder = TextDecoder;
 
 beforeAll(() => {
   server.listen();
