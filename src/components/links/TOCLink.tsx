@@ -1,7 +1,7 @@
 import clsx from 'clsx';
 import * as React from 'react';
 
-import UnstyledLink from '@/components/links/UnStyledLink';
+import UnstyledLink from '@/components/links/UnstyledLink';
 
 type TOCLinkProps = {
   id: string;

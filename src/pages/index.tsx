@@ -10,7 +10,7 @@ import PostCard from '@/components/cards/PostCard';
 import HeroImage from '@/components/images/HeroImage';
 import Layout from '@/components/layout/Layout';
 import ButtonLink from '@/components/links/ButtonLink';
-import UnStyledLink from '@/components/links/UnStyledLink';
+import UnstyledLink from '@/components/links/UnstyledLink';
 import Seo from '@/components/Seo';
 import Trans from '@/components/translation/Trans';
 
@@ -91,7 +91,7 @@ export default function IndexPage({
                 </div>
               </div>
             </article>
-            <UnStyledLink
+            <UnstyledLink
               href='#intro'
               className={clsx(
                 'absolute bottom-2 left-1/2 -translate-x-1/2 md:bottom-10',
@@ -100,7 +100,7 @@ export default function IndexPage({
               )}
             >
               <IoArrowDownOutline className='h-8 w-8 animate-bounce md:h-10 md:w-10' />
-            </UnStyledLink>
+            </UnstyledLink>
             {settings['show-hero-image'] === 'true' && (
               <HeroImage
                 className={clsx(

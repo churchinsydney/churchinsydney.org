@@ -1,6 +1,6 @@
 import clsx from 'clsx';
 
-import UnStyledLink, { UnStyledLinkProps } from './UnStyledLink';
+import UnstyledLink, { UnstyledLinkProps } from './UnstyledLink';
 
 enum ButtonVariant {
   'default',
@@ -8,7 +8,7 @@ enum ButtonVariant {
 
 export type ButtonLinkProps = {
   variant?: keyof typeof ButtonVariant;
-} & UnStyledLinkProps;
+} & UnstyledLinkProps;
 
 export default function ButtonLink({
   children,
@@ -17,7 +17,7 @@ export default function ButtonLink({
   ...rest
 }: ButtonLinkProps) {
   return (
-    <UnStyledLink
+    <UnstyledLink
       {...rest}
       className={clsx(
         'inline-flex rounded px-4 py-2 font-bold',
@@ -35,6 +35,6 @@ export default function ButtonLink({
       )}
     >
       {children}
-    </UnStyledLink>
+    </UnstyledLink>
   );
 }

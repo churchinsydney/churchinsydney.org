@@ -3,7 +3,7 @@ import { useContext, useEffect, useState } from 'react';
 import useMediaQuery from '@/hooks/useMediaQuery';
 
 import { headerLinks } from '@/components/layout/Header';
-import UnStyledLink from '@/components/links/UnStyledLink';
+import UnstyledLink from '@/components/links/UnstyledLink';
 import Tooltip from '@/components/tooltip/Tooltip';
 
 import { AppContext } from '@/context/AppContext';
@@ -41,13 +41,13 @@ export default function FooterLinks() {
           content={tooltip}
           aria-label='tooltip'
         >
-          <UnStyledLink
+          <UnstyledLink
             className='animated-underline rounded-sm text-sm font-medium focus:outline-none focus-visible:ring focus-visible:ring-primary-300 dark:text-gray-200'
             href={href}
             aria-label={text.toLowerCase()}
           >
             {text}
-          </UnStyledLink>
+          </UnstyledLink>
         </Tooltip>
       ))}
     </div>

@@ -1,7 +1,7 @@
 import clsx from 'clsx';
 import Link, { LinkProps } from 'next/link';
 
-export type UnStyledLinkProps = {
+export type UnstyledLinkProps = {
   href: string;
   children: React.ReactNode;
   openNewTab?: boolean;
@@ -9,13 +9,13 @@ export type UnStyledLinkProps = {
 } & React.ComponentPropsWithoutRef<'a'> &
   LinkProps;
 
-export default function UnStyledLink({
+export default function UnstyledLink({
   children,
   href,
   openNewTab,
   className,
   ...rest
-}: UnStyledLinkProps) {
+}: UnstyledLinkProps) {
   const isNewTab =
     openNewTab !== undefined
       ? openNewTab
