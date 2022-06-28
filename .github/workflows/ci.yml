@@ -14,6 +14,6 @@ jobs:
       - uses: Borales/actions-yarn@v3.0.0
         with:
           cmd: install
-      - uses: borales/actions-yarn@v3.0.0
+      - uses: Borales/actions-yarn@v3.0.0
         with:
           cmd: test

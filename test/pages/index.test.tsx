@@ -1,13 +1,14 @@
 import React from 'react';
-import { render, screen, within } from '../testUtils';
+
 import Home, { getStaticProps } from '@/pages/index';
+
+import { render, screen, within } from '../testUtils';
 
 const { getByText, getByLabelText } = screen;
 
-const useRouter = jest.spyOn(require('next/router'), 'useRouter');
-
-useRouter.mockImplementation(() => ({
-  route: '/',
+jest.mock('next/router', () => ({
+  __esModule: true,
+  useRouter: jest.fn().mockImplementation(() => ({ route: '/' })),
 }));
 
 describe('Home page', () => {
@@ -68,7 +69,7 @@ describe('Home page', () => {
     render(<Home {...props} />);
 
     // expect each translation text to be in the document
-    Object.entries(props.translations).forEach(([_, value]) => {
+    Object.entries(props.translations).forEach(([, value]) => {
       expect(getByText(value)).toBeInTheDocument();
     });
 

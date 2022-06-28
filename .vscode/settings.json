@@ -6,5 +6,21 @@
   "editor.codeActionsOnSave": {
     "source.fixAll": true
   },
-  "cSpell.words": ["esbuild", "flowbite", "Scrollspy"]
+  "cSpell.words": [
+    "Borales",
+    "cellspacing",
+    "churchinsydney",
+    "esbuild",
+    "flowbite",
+    "headlessui",
+    "Kellyville",
+    "lightbox",
+    "nextjs",
+    "postbuild",
+    "rehype",
+    "Scrollspy",
+    "sendgrid",
+    "svgr",
+    "typeahead"
+  ]
 }

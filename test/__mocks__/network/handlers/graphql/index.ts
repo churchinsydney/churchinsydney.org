@@ -1,15 +1,15 @@
-import { getPostsByTags } from './getPostsByTags';
-import { login } from './login';
 import { getEmailTemplateBySlug } from './getEmailTemplateBySlug';
 import { getLinks } from './getLinks';
-import { getPosts } from './getPosts';
-import { getSettings } from './getSettings';
 import { getOurBeliefs } from './getOurBeliefs';
 import { getOurLives } from './getOurLives';
 import { getPostBySlug } from './getPostBySlug';
+import { getPosts } from './getPosts';
+import { getPostsByTags } from './getPostsByTags';
+import { getSettings } from './getSettings';
 import { getTranslationsByNamespace } from './getTranslationsByNamespace';
+import { login } from './login';
 
-export default [
+const handlers = [
   getPostsByTags,
   login,
   getEmailTemplateBySlug,
@@ -21,3 +21,5 @@ export default [
   getPostBySlug,
   getTranslationsByNamespace,
 ];
+
+export default handlers;

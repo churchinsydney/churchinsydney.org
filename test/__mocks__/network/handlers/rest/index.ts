@@ -1,3 +1,5 @@
 import { hasNewDeploy } from './hasNewDeploy';
 
-export default [hasNewDeploy];
+const handlers = [hasNewDeploy];
+
+export default handlers;

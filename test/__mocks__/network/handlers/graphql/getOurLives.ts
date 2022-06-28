@@ -10,7 +10,7 @@ export const getOurLives = graphql.query('GetOurLives', (req, res, ctx) => {
           translations: [
             {
               description:
-                'It’s up to everyone to look after the spiritual development of our next generation. We keep our high school students’ lives meaningful by providing an atmosphere rich with God’s Word, healthy companionships, and fun activities.',
+                'It’s up to everyone to look after the spiritual development of our next generation. We keep our high school students’ lives meaningful by providing an atmosphere rich with God’s Word, healthy companionship, and fun activities.',
               title: 'Young people’s gatherings',
             },
           ],
@@ -32,7 +32,7 @@ export const getOurLives = graphql.query('GetOurLives', (req, res, ctx) => {
           translations: [
             {
               description:
-                "Prayerful spiritual relationships of two or three believers fuel our Christian life and enable us to be Christ's witnesses. We value these companionships highly and take every opportunity to encourage, strengthen, and sustain them.",
+                "Prayerful spiritual relationships of two or three believers fuel our Christian life and enable us to be Christ's witnesses. We value these companionship highly and take every opportunity to encourage, strengthen, and sustain them.",
               title: 'Spiritual companionship',
             },
           ],

@@ -1,14 +1,14 @@
 import clsx from 'clsx';
 
-import UnstyledLink, { UnstyledLinkProps } from './UnStyledLink';
+import UnStyledLink, { UnStyledLinkProps } from './UnStyledLink';
 
 export default function CustomLink({
   children,
   className = '',
   ...rest
-}: UnstyledLinkProps) {
+}: UnStyledLinkProps) {
   return (
-    <UnstyledLink
+    <UnStyledLink
       {...rest}
       className={clsx(
         'animated-underline custom-link inline-flex items-center font-medium',
@@ -20,6 +20,6 @@ export default function CustomLink({
       <span className='dark:bg-gradient-to-tr dark:from-primary-300 dark:to-primary-400 dark:bg-clip-text dark:text-transparent'>
         {children}
       </span>
-    </UnstyledLink>
+    </UnStyledLink>
   );
 }
