@@ -10,20 +10,14 @@
   TERM = "xterm"
 
 [[plugins]]
-  package = "@netlify/plugin-nextjs"
-  
+package = "@netlify/plugin-nextjs"
+
 [[plugins]]
-  # start Netlify server
-  [plugins.inputs.preBuild]
-    start = 'npx netlify dev'
-    wait-on = 'http://localhost:8888'
-    
-[[plugins]]
-  # runs Cypress tests against the deployed URL
-  package = "netlify-plugin-cypress"
-    [plugins.inputs]
-      # skip the default tests before the deploy
-      skip = true
-    [plugins.inputs.onSuccess]
-      # run tests after the deploy
-      enable = true
+# runs Cypress tests against the deployed URL
+package = "netlify-plugin-cypress"
+  [plugins.inputs]
+    # skip the default tests before the deploy
+    skip = true
+  [plugins.inputs.onSuccess]
+    # run tests after the deploy
+    enable = true
