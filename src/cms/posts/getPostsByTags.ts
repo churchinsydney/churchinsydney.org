@@ -32,7 +32,5 @@ export async function getPostsByTags(
     },
   })) as { posts: PostsGraphQLResponse };
 
-  console.log(JSON.stringify(posts, null, 2));
-
   return transformPosts(posts);
 }

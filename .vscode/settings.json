@@ -6,5 +6,5 @@
   "editor.codeActionsOnSave": {
     "source.fixAll": true
   },
-  "cSpell.words": ["Scrollspy", "esbuild"]
+  "cSpell.words": ["esbuild", "flowbite", "Scrollspy"]
 }

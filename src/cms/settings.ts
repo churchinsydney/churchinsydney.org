@@ -1,9 +1,8 @@
 import { gql } from 'graphql-request';
-import { Settings } from 'http2';
 
 import { request } from '@/lib/graphql';
 
-import { Setting } from '@/types/types';
+import { Setting, Settings } from '@/types/types';
 
 type GraphQLResponse = {
   settings: {

@@ -1,6 +1,6 @@
 import React from 'react';
 import { render, screen, within } from '../testUtils';
-import Home from '../../src/pages/index';
+import Home, { getStaticProps } from '@/pages/index';
 
 const { getByText, getByLabelText } = screen;
 
@@ -11,6 +11,33 @@ useRouter.mockImplementation(() => ({
 }));
 
 describe('Home page', () => {
+  it('Static props hydrate should renders home page', async () => {
+    const { props } = await getStaticProps({ locale: 'en' });
+
+    render(<Home {...props} />);
+
+    // expect each translation text to be in the document
+    [
+      'home-verse',
+      'home-welcome',
+      'home-introduction-title',
+      'home-quote',
+      'home-quote-reference',
+    ].forEach((key) => {
+      expect(screen.getByText(props.translations[key])).toBeInTheDocument();
+    });
+
+    const footerElement = screen.getByLabelText('footer label');
+
+    // expect each link to be in the document
+    props.links.forEach(({ href, text }) => {
+      expect(within(footerElement).getByText(text).getAttribute('href')).toBe(
+        href
+      );
+    });
+    expect(screen.queryByLabelText('hero image')).not.toBeInTheDocument();
+  });
+
   // happy path
   it('Should render links and translations', () => {
     const props = {

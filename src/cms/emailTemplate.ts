@@ -4,27 +4,16 @@ import { request } from '@/lib/graphql';
 
 type GraphQLResponse = {
   email_templates: {
-    0: {
-      template: string;
-    };
-  };
-  settings: {
-    0: { toEmail: string };
-  };
+    template: string;
+  }[];
+  settings: { toEmail: string }[];
 };
 
 export async function getEmailTemplateBySlug(
   emailTemplateSlug: string,
   contactUsToEmailKey: string
 ) {
-  const {
-    email_templates: {
-      0: { template },
-    },
-    settings: {
-      0: { toEmail },
-    },
-  } = (await request({
+  const { email_templates, settings } = (await request({
     document: gql`
       query GetEmailTemplateBySlug(
         $emailTemplateSlug: String!
@@ -44,5 +33,8 @@ export async function getEmailTemplateBySlug(
     },
   })) as GraphQLResponse;
 
-  return { template, toEmail };
+  return {
+    template: email_templates.pop()?.template,
+    toEmail: settings.pop()?.toEmail,
+  };
 }

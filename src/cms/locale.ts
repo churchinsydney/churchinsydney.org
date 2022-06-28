@@ -5,8 +5,6 @@ type WithTranslations = {
 };
 
 export const parseTranslation = <T extends WithTranslations>(data: T[]) => {
-  console.log('----', JSON.stringify(data, null, 2));
-
   return data.map((item) => ({
     ...omit(item, ['translations']),
     ...item.translations[0],

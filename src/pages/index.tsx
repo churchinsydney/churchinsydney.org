@@ -200,12 +200,7 @@ export default function IndexPage({
   );
 }
 
-export async function getStaticProps({
-  locale,
-}: {
-  locale: string;
-  defaultLocale: string;
-}) {
+export async function getStaticProps({ locale }: { locale: string }) {
   generateRss();
 
   return {

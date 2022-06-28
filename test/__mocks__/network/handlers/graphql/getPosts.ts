@@ -1,6 +1,6 @@
 import { graphql } from 'msw';
 
-export const getPostsByTags = graphql.query('GetPostsByTags', (_, res, ctx) => {
+export const getPosts = graphql.query('GetPosts', (_, res, ctx) => {
   return res(
     ctx.data({
       posts: [
