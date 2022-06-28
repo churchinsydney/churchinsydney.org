@@ -23,3 +23,4 @@ package = "netlify-plugin-cypress"
     # before deploying it
     enable = true
     group = 'built'
+    record = true
