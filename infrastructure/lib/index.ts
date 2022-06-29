@@ -3,9 +3,9 @@ import { App } from 'aws-cdk-lib/core/lib/app';
 import 'source-map-support/register';
 
 import { RedirectCmsStack } from './redirect-cms';
+import { RedirectWwwStack } from './redirect-www';
 
-// eslint-disable-next-line import/no-anonymous-default-export
-export default (app: App) => {
+const infra = (app: App) => {
   const env = {
     account: process.env.CDK_DEFAULT_ACCOUNT,
     region: process.env.CDK_DEFAULT_REGION,
@@ -15,5 +15,10 @@ export default (app: App) => {
     RedirectCmsStack: new RedirectCmsStack(app, `redirect-cms-stack`, {
       env,
     }),
+    RedirectWwwStack: new RedirectWwwStack(app, `redirect-www-stack`, {
+      env,
+    }),
   };
 };
+
+export default infra;
