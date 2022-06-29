@@ -1,4 +1,4 @@
-import React from 'react';
+import { expect } from '@jest/globals';
 
 import Home, { getStaticProps } from '@/pages/index';
 
