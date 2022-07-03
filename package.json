@@ -3,7 +3,7 @@
   "version": "1.1.1",
   "private": true,
   "scripts": {
-    "test": "DEBUG_PRINT_LIMIT=10000 vitest",
+    "test": "DEBUG_PRINT_LIMIT=10000 vitest run",
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
