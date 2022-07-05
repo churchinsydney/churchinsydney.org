@@ -46,12 +46,12 @@ class MyDocument extends Document {
           />
           <Script id='google-analytics' strategy='afterInteractive'>
             {`
-            window.dataLayer = window.dataLayer || [];
-            function gtag(){window.dataLayer.push(arguments);}
-            gtag('js', new Date());
+              window.dataLayer = window.dataLayer || [];
+              function gtag(){window.dataLayer.push(arguments);}
+              gtag('js', new Date());
 
-            gtag('config', ${process.env.NEXT_PUBLIC_ANALYTICS_ID});
-          `}
+              gtag('config', ${process.env.NEXT_PUBLIC_ANALYTICS_ID});
+            `}
           </Script>
         </body>
       </Html>
