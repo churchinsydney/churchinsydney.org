@@ -3,7 +3,7 @@ on:
   workflow_dispatch:
     inputs:
       siteName:
-        description: Netlify Site Name
+        description: Netlify site name
         required: false
       deployPrimeUrl:
         description: Deployed URL
