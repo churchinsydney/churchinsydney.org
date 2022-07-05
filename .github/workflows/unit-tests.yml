@@ -1,8 +1,8 @@
 name: Unit and DOM testing
 
 on:
-  push:
-    branches: [$default-branch]
+  # push:
+  #   branches: [$default-branch]
   pull_request:
 
 jobs:
