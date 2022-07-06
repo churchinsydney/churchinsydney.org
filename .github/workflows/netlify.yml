@@ -15,10 +15,12 @@ jobs:
           export SENDGRID_API_KEY=${{ secrets.SENDGRID_API_KEY }}
           export NEXT_PUBLIC_ANALYTICS_ID=${{ secrets.NEXT_PUBLIC_ANALYTICS_ID }}
           yarn build
+          cp -r .next dist
+          ls dist
       - name: Deploy to Netlify
         uses: nwtgck/actions-netlify@v1.2
         with:
-          publish-dir: "./.next"
+          publish-dir: "./dist"
           production-branch: master
           github-token: ${{ secrets.GITHUB_TOKEN }}
           deploy-message: "Deploy from GitHub Actions"
