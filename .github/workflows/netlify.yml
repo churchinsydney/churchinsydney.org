@@ -7,7 +7,7 @@ jobs:
     runs-on: ubuntu-18.04
     steps:
       - uses: actions/checkout@v2
-        run: |
+      - run: |
           yarn
           ls
           export CMS_API_ENDPOINT=${{ secrets.CMS_API_ENDPOINT }}
