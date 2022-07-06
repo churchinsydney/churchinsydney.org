@@ -1,19 +1,10 @@
-name: e2e
+name: Build and Deploy to Netlify
 on:
-  workflow_dispatch:
-    inputs:
-      siteName:
-        description: Netlify Site Name
-        required: false
-      deployPrimeUrl:
-        description: Deployed URL
-        required: true
-      commit:
-        description: Original repo commit SHA
-        required: false
+  # push:
+  pull_request:
 jobs:
-  show-event:
-    runs-on: ubuntu-latest
+  build:
+    runs-on: ubuntu-18.04
     steps:
       - uses: actions/checkout@v2
 
