@@ -3,31 +3,44 @@ on:
   # push:
   pull_request:
 jobs:
-  build:
-    runs-on: ubuntu-18.04
+  deploy:
+    runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
       - run: |
-          yarn
           export CMS_API_ENDPOINT=${{ secrets.CMS_API_ENDPOINT }}
           export CMS_API_USERNAME=${{ secrets.CMS_API_USERNAME }}
           export CMS_API_PASSWORD=${{ secrets.CMS_API_PASSWORD }}
           export SENDGRID_API_KEY=${{ secrets.SENDGRID_API_KEY }}
           export NEXT_PUBLIC_ANALYTICS_ID=${{ secrets.NEXT_PUBLIC_ANALYTICS_ID }}
-          yarn build
-          cp -r .next dist
-          ls dist
-      - name: Deploy to Netlify
-        uses: nwtgck/actions-netlify@v1.2
+      # - name: Build Nextjs Site
+      #   run: |
+      #     export CMS_API_ENDPOINT=${{ secrets.CMS_API_ENDPOINT }}
+      #     export CMS_API_USERNAME=${{ secrets.CMS_API_USERNAME }}
+      #     export CMS_API_PASSWORD=${{ secrets.CMS_API_PASSWORD }}
+      #     export SENDGRID_API_KEY=${{ secrets.SENDGRID_API_KEY }}
+      #     export NEXT_PUBLIC_ANALYTICS_ID=${{ secrets.NEXT_PUBLIC_ANALYTICS_ID }}
+      #     yarn build
+      #     cp -r .next build
+      #     ls build
+      - name: Deploy
+      - uses: jsmrcaga/action-netlify-deploy@master
         with:
-          publish-dir: "./dist"
-          production-branch: master
-          github-token: ${{ secrets.GITHUB_TOKEN }}
-          deploy-message: "Deploy from GitHub Actions"
-          enable-pull-request-comment: false
-          enable-commit-comment: true
-          overwrites-pull-request-comment: true
-        env:
           NETLIFY_AUTH_TOKEN: ${{ secrets.NETLIFY_AUTH_TOKEN }}
           NETLIFY_SITE_ID: ${{ secrets.NETLIFY_SITE_ID }}
-        timeout-minutes: 1
+          deploy_alias: ${{ env.BRANCH_NAME }}
+
+      # Creates a status check with link to preview
+      - name: Status check
+        uses: Sibz/github-status-action@v1.1.1
+        with:
+          authToken: ${{ secrets.GITHUB_TOKEN }}
+          context: Netlify preview
+          state: success
+          target_url: https://${{ env.BRANCH_NAME }}.netlify.app
+        # env:
+        #   CMS_API_ENDPOINT: ${{ secrets.CMS_API_ENDPOINT }}
+        #   CMS_API_USERNAME: ${{ secrets.CMS_API_USERNAME }}
+        #   CMS_API_PASSWORD: ${{ secrets.CMS_API_PASSWORD }}
+        #   SENDGRID_API_KEY: ${{ secrets.SENDGRID_API_KEY }}
+        #   NEXT_PUBLIC_ANALYTICS_ID: ${{ secrets.NEXT_PUBLIC_ANALYTICS_ID }}
