@@ -26,12 +26,23 @@ jobs:
       #     ls build
       - name: Deploy
         uses: jsmrcaga/action-netlify-deploy@master
+        # run: |
+        #   export CMS_API_ENDPOINT=${{ secrets.CMS_API_ENDPOINT }}
+        #   export CMS_API_USERNAME=${{ secrets.CMS_API_USERNAME }}
+        #   export CMS_API_PASSWORD=${{ secrets.CMS_API_PASSWORD }}
+        #   export SENDGRID_API_KEY=${{ secrets.SENDGRID_API_KEY }}
+        #   export NEXT_PUBLIC_ANALYTICS_ID=${{ secrets.NEXT_PUBLIC_ANALYTICS_ID }}
         with:
           NETLIFY_AUTH_TOKEN: ${{ secrets.NETLIFY_AUTH_TOKEN }}
           NETLIFY_SITE_ID: ${{ secrets.NETLIFY_SITE_ID }}
           deploy_alias: ${{ env.BRANCH_NAME }}
           build_directory: ".next"
-
+        env:
+          CMS_API_ENDPOINT: ${{ secrets.CMS_API_ENDPOINT }}
+          CMS_API_USERNAME: ${{ secrets.CMS_API_USERNAME }}
+          CMS_API_PASSWORD: ${{ secrets.CMS_API_PASSWORD }}
+          SENDGRID_API_KEY: ${{ secrets.SENDGRID_API_KEY }}
+          NEXT_PUBLIC_ANALYTICS_ID: ${{ secrets.NEXT_PUBLIC_ANALYTICS_ID }}
       # Creates a status check with link to preview
       - name: Status check
         uses: Sibz/github-status-action@v1.1.1
