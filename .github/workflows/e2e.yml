@@ -13,23 +13,27 @@ on:
         required: false
 jobs:
   show-event:
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-20.04
     steps:
-      - uses: actions/checkout@v2
+      - run: echo "Current Git info $GITHUB_WORKFLOW $GITHUB_REF $GITHUB_SHA"
+      - run: echo "Testing url ${{ github.event.inputs.deployPrimeUrl }}"
 
-      # ( Build to ./dist or other directory... )
+      - name: Checkout
+        uses: actions/checkout@v2
 
-      - name: Deploy to Netlify
-        uses: nwtgck/actions-netlify@v1.2
+      - name: Install packages
+        run: yarn
+
+      # test the deployed site using
+      # https://github.com/cypress-io/github-action
+      - name: Cypress run 🏃‍♀️
+        uses: cypress-io/github-action@v2
         with:
-          publish-dir: "./dist"
-          production-branch: master
-          github-token: ${{ secrets.GH_TOKEN }}
-          deploy-message: "Deploy from GitHub Actions"
-          enable-pull-request-comment: false
-          enable-commit-comment: true
-          overwrites-pull-request-comment: true
+          install: false
+          browser: chrome
+          headless: true
+          record: true
+          config: baseUrl=${{ github.event.inputs.deployPrimeUrl }}
+          command: yarn cypress:headless
         env:
-          NETLIFY_AUTH_TOKEN: ${{ secrets.NETLIFY_AUTH_TOKEN }}
-          NETLIFY_SITE_ID: ${{ secrets.NETLIFY_SITE_ID }}
-        timeout-minutes: 1
+          CYPRESS_RECORD_KEY: ${{ secrets.CYPRESS_RECORD_KEY }}
