@@ -38,6 +38,11 @@ jobs:
         id: deploy-netlify
         uses: netlify/actions/cli@master
         env:
+          CMS_API_ENDPOINT: ${{ secrets.CMS_API_ENDPOINT }}
+          CMS_API_USERNAME: ${{ secrets.CMS_API_USERNAME }}
+          CMS_API_PASSWORD: ${{ secrets.CMS_API_PASSWORD }}
+          SENDGRID_API_KEY: ${{ secrets.SENDGRID_API_KEY }}
+          NEXT_PUBLIC_ANALYTICS_ID: ${{ secrets.NEXT_PUBLIC_ANALYTICS_ID }}
           NETLIFY_AUTH_TOKEN: ${{ secrets.NETLIFY_AUTH_TOKEN }}
           NETLIFY_SITE_ID: ${{ secrets.NETLIFY_SITE_ID }}
         with:
