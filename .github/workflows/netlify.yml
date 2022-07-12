@@ -22,8 +22,8 @@ jobs:
         with:
           node-version: 16.x
 
-      # - name: 🧰 Install dependencies
-      #   run: yarn
+      - name: 🧰 Install dependencies
+        run: yarn
 
       - name: 📦 Build project
         env:
