@@ -14,6 +14,7 @@ jobs:
           path: |
             **/node_modules
             ${{ github.workspace }}/.next/cache
+            ${{ github.workspace }}/.netlify
           key: ${{ runner.os }}-modules-${{ hashFiles('**/yarn-lock.json') }}
 
       - name: Use Node.js
@@ -43,8 +44,8 @@ jobs:
 
       # Deploy to Netlify with a personalized message
       - name: 🚀 Deploy to Netlify
-        id: deploy-netlify
-        uses: netlify/actions/cli@master
+        # id: deploy-netlify
+        # uses: netlify/actions/cli@master
         env:
           CMS_API_ENDPOINT: ${{ secrets.CMS_API_ENDPOINT }}
           CMS_API_USERNAME: ${{ secrets.CMS_API_USERNAME }}
@@ -53,8 +54,7 @@ jobs:
           NEXT_PUBLIC_ANALYTICS_ID: ${{ secrets.NEXT_PUBLIC_ANALYTICS_ID }}
           NETLIFY_AUTH_TOKEN: ${{ secrets.NETLIFY_AUTH_TOKEN }}
           NETLIFY_SITE_ID: ${{ secrets.NETLIFY_SITE_ID }}
-        with:
-          args: deploy -m 'v${{ steps.package-version.outputs.current-version}} ・ ${{ github.head_ref }}'
+        run: npx netlify deploy -m 'v${{ steps.package-version.outputs.current-version}} ・ ${{ github.head_ref }}'
 
       # - name: Set env variables
       #   run: |
