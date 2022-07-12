@@ -1,6 +1,7 @@
 [build]
   command = "yarn install && yarn build"
   publish = ".next"
+  base = "/"
   
 [build.environment]
   # skip installing Cypress during the build step
