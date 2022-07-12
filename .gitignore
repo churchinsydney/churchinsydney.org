@@ -59,3 +59,6 @@ rss.xml
 **/public/worker-*.js.map
 .env.production
 public/sitemap-0.xml
+
+# Local Netlify folder
+.netlify
