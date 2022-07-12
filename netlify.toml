@@ -1,12 +1,6 @@
 [build]
-  command = "yarn install && yarn build"
+  command = "yarn build"
   publish = ".next"
-  base = "/"
-
-[[redirects]]
-  from = "/*"
-  to = "/index.html"
-  status = 200
 
 [build.environment]
   # skip installing Cypress during the build step

@@ -21,17 +21,17 @@ jobs:
         with:
           node-version: 16.x
 
-      - name: 🧰 Install dependencies
-        run: yarn
+      # - name: 🧰 Install dependencies
+      #   run: yarn
 
-      # - name: 📦 Build project
-      #   env:
-      #     CMS_API_ENDPOINT: ${{ secrets.CMS_API_ENDPOINT }}
-      #     CMS_API_USERNAME: ${{ secrets.CMS_API_USERNAME }}
-      #     CMS_API_PASSWORD: ${{ secrets.CMS_API_PASSWORD }}
-      #     SENDGRID_API_KEY: ${{ secrets.SENDGRID_API_KEY }}
-      #     NEXT_PUBLIC_ANALYTICS_ID: ${{ secrets.NEXT_PUBLIC_ANALYTICS_ID }}
-      #   run: yarn build
+      - name: 📦 Build project
+        env:
+          CMS_API_ENDPOINT: ${{ secrets.CMS_API_ENDPOINT }}
+          CMS_API_USERNAME: ${{ secrets.CMS_API_USERNAME }}
+          CMS_API_PASSWORD: ${{ secrets.CMS_API_PASSWORD }}
+          SENDGRID_API_KEY: ${{ secrets.SENDGRID_API_KEY }}
+          NEXT_PUBLIC_ANALYTICS_ID: ${{ secrets.NEXT_PUBLIC_ANALYTICS_ID }}
+        run: yarn build
 
       # - name: 🧹 Run lint
       #   run: npm run lint
@@ -52,7 +52,7 @@ jobs:
           NETLIFY_AUTH_TOKEN: ${{ secrets.NETLIFY_AUTH_TOKEN }}
           NETLIFY_SITE_ID: ${{ secrets.NETLIFY_SITE_ID }}
         with:
-          args: deploy --build -m 'v${{ steps.package-version.outputs.current-version}} ・ ${{ github.head_ref }}'
+          args: deploy -m 'v${{ steps.package-version.outputs.current-version}} ・ ${{ github.head_ref }}'
 
       # - name: Set env variables
       #   run: |
