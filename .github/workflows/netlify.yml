@@ -31,7 +31,9 @@ jobs:
           CMS_API_PASSWORD: ${{ secrets.CMS_API_PASSWORD }}
           SENDGRID_API_KEY: ${{ secrets.SENDGRID_API_KEY }}
           NEXT_PUBLIC_ANALYTICS_ID: ${{ secrets.NEXT_PUBLIC_ANALYTICS_ID }}
-        run: yarn build
+          NETLIFY_AUTH_TOKEN: ${{ secrets.NETLIFY_AUTH_TOKEN }}
+          NETLIFY_SITE_ID: ${{ secrets.NETLIFY_SITE_ID }}
+        run: yarn netlify
 
       # - name: 🧹 Run lint
       #   run: npm run lint
