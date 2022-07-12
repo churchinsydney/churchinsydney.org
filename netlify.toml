@@ -2,20 +2,7 @@
   command = "yarn build"
   publish = ".next"
 
-[build.environment]
-  # skip installing Cypress during the build step
-  # because we will run Cypress tests in the GitHub workflow
-  CYPRESS_INSTALL_BINARY = "0"
-  # set TERM variable for terminal output
-  TERM = "xterm"
-
 [[plugins]]
   package = "@netlify/plugin-nextjs"
 
-[[plugins]]
-  package = "netlify-plugin-github-dispatch"
-  [plugins.inputs]
-    owner = "churchinsydney"
-    repo = "churchinsydney.org"
-    workflow = ".github/workflows/e2e.yml"
     
