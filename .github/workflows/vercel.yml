@@ -34,7 +34,7 @@ jobs:
           NEXT_PUBLIC_ANALYTICS_ID: ${{ secrets.NEXT_PUBLIC_ANALYTICS_ID }}
           NETLIFY_AUTH_TOKEN: ${{ secrets.NETLIFY_AUTH_TOKEN }}
           NETLIFY_SITE_ID: ${{ secrets.NETLIFY_SITE_ID }}
-        run: yarn netlify
+        run: npx vercel build
 
       # - name: 🧹 Run lint
       #   run: npm run lint
@@ -43,7 +43,7 @@ jobs:
       #   run: npm run test
 
       # Deploy to Netlify with a personalized message
-      - name: 🚀 Deploy to Netlify
+      - name: 🚀 Deploy to Vercel
         # id: deploy-netlify
         # uses: netlify/actions/cli@master
         env:
@@ -54,7 +54,7 @@ jobs:
           NEXT_PUBLIC_ANALYTICS_ID: ${{ secrets.NEXT_PUBLIC_ANALYTICS_ID }}
           NETLIFY_AUTH_TOKEN: ${{ secrets.NETLIFY_AUTH_TOKEN }}
           NETLIFY_SITE_ID: ${{ secrets.NETLIFY_SITE_ID }}
-        run: npx netlify deploy -m 'v${{ steps.package-version.outputs.current-version}} ・ ${{ github.head_ref }}'
+        run: npx vercel deploy --prebuilt -t ${{ secrets.VERCEL_TOKEN }}
 
       # - name: Set env variables
       #   run: |
