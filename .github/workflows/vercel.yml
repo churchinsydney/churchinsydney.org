@@ -44,6 +44,9 @@ jobs:
           VERCEL_TOKEN: ${{ secrets.VERCEL_TOKEN }}
           VERCEL_ORG_ID: ${{ secrets.VERCEL_ORG_ID }}
           VERCEL_PROJECT_ID: ${{ secrets.VERCEL_PROJECT_ID }}
+          VERCEL_ARGS: "--prebuilt"
+          PR_PREVIEW_DOMAIN: |
+            - {BRANCH}-{PR}.churchinsydney.vercel.app
           # PRODUCTION: false
           # GITHUB_DEPLOYMENT_ENV: "Preview"
           CREATE_COMMENT: true
