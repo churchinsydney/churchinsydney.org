@@ -2,15 +2,15 @@ name: e2e
 on:
   workflow_dispatch:
     inputs:
-      siteName:
-        description: Netlify Site Name
-        required: false
+      # siteName:
+      #   description: Site Name
+      #   required: false
       deployPrimeUrl:
         description: Deployed URL
         required: true
-      commit:
-        description: Original repo commit SHA
-        required: false
+      # commit:
+      #   description: Original repo commit SHA
+      #   required: false
 jobs:
   show-event:
     runs-on: ubuntu-20.04
