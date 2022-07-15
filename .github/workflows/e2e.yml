@@ -2,15 +2,9 @@ name: e2e
 on:
   workflow_dispatch:
     inputs:
-      # siteName:
-      #   description: Site Name
-      #   required: false
       deployPrimeUrl:
         description: Deployed URL
         required: true
-      # commit:
-      #   description: Original repo commit SHA
-      #   required: false
 jobs:
   e2e:
     runs-on: ubuntu-20.04
@@ -30,7 +24,6 @@ jobs:
           browser: chrome
           headless: true
           record: true
-          config: baseUrl=${{ github.event.inputs.deployPrimeUrl }}
           command: npx cypress run --browser chrome --headless --config baseUrl=${{ github.event.inputs.deployPrimeUrl }}
         env:
           CYPRESS_RECORD_KEY: ${{ secrets.CYPRESS_RECORD_KEY }}
