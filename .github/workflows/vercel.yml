@@ -49,8 +49,6 @@ jobs:
         with:
           # You should create a personal access token and store it in your repository
           token: ${{ secrets.GITHUB_TOKEN }}
-          repository: "@"
-          owner: mvasigh
           event_type: push
           message: |
             {
