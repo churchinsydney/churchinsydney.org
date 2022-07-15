@@ -12,7 +12,7 @@ on:
       #   description: Original repo commit SHA
       #   required: false
 jobs:
-  show-event:
+  e2e:
     runs-on: ubuntu-20.04
     steps:
       - run: echo "Current Git info $GITHUB_WORKFLOW $GITHUB_REF $GITHUB_SHA"
