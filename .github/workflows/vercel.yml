@@ -47,3 +47,5 @@ jobs:
       - name: Trigger e2e tests
         run: |
           echo '{"deployPrimeUrl":"${{steps.vercel-deploy.outputs.PREVIEW_URL}}"}' | gh workflow run e2e --json
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
