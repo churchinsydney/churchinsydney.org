@@ -1,7 +1,6 @@
 name: e2e
 on:
-  repository_dispatch:
-    types: [e2e]
+  workflow_dispatch:
     inputs:
       # siteName:
       #   description: Site Name
