@@ -49,7 +49,7 @@ jobs:
         with:
           # You should create a personal access token and store it in your repository
           token: ${{ secrets.GITHUB_TOKEN }}
-          event_type: e2e-test
+          event_type: e2e
           message: |
             {
               "deployPrimeUrl": "${{steps.vercel-deploy.outputs.PREVIEW_URL}}"
