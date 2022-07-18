@@ -43,8 +43,12 @@ jobs:
           VERCEL_PROJECT_ID: ${{ secrets.VERCEL_PROJECT_ID }}
           VERCEL_ARGS: "--prebuilt"
           CREATE_COMMENT: true
-
-      - name: Trigger e2e
-        uses: ./.github/workflows/e2e
+        
+      - name: Save deployed url
+        run: |
+          mkdir -p ./pr
+          echo ${{steps.vercel-deploy.outputs.PREVIEW_URL}} > ./pr/pr_deployed_url
+      - uses: actions/upload-artifact@v2
         with:
-          deployPrimeUrl: ${{ steps.vercel-deploy.outputs.PREVIEW_URL }}
+          name: pr_deployed_url
+          path: pr/
