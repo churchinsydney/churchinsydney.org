@@ -44,8 +44,7 @@ jobs:
           VERCEL_ARGS: "--prebuilt"
           CREATE_COMMENT: true
 
-      - name: Trigger e2e tests
-        run: |
-          echo '{"deployPrimeUrl":"${{steps.vercel-deploy.outputs.PREVIEW_URL}}"}' | gh workflow run e2e --json
-        env:
-          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      - name: Trigger e2e
+        uses: ./.github/workflows/e2e
+        with:
+          deployPrimeUrl: ${{ steps.vercel-deploy.outputs.PREVIEW_URL }}

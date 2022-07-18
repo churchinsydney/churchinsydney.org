@@ -1,17 +1,14 @@
 name: e2e
 on:
-  workflow_dispatch:
+  workflow_call:
     inputs:
       deployPrimeUrl:
-        description: Deployed URL
         required: true
+        type: string
 jobs:
   e2e:
     runs-on: ubuntu-20.04
     steps:
-      - run: echo "Current Git info $GITHUB_WORKFLOW $GITHUB_REF $GITHUB_SHA"
-      - run: echo "Testing url-> ${{ github.event.inputs.deployPrimeUrl }}"
-
       - name: Checkout
         uses: actions/checkout@v2
 
@@ -24,7 +21,7 @@ jobs:
           browser: chrome
           headless: true
           record: true
-          command: npx cypress run --browser chrome --headless --config baseUrl=${{ github.event.inputs.deployPrimeUrl }}
+          command: npx cypress run --browser chrome --headless --config baseUrl=${{ inputs.deployPrimeUrl }}
         env:
           CYPRESS_RECORD_KEY: ${{ secrets.CYPRESS_RECORD_KEY }}
           GITHUB_TOKEN: ${{secrets.GITHUB_TOKEN}}
