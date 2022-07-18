@@ -1,6 +1,5 @@
 name: Build and Deploy to Vercel
 on:
-  # push:
   pull_request:
 jobs:
   deploy:
@@ -43,7 +42,7 @@ jobs:
           VERCEL_PROJECT_ID: ${{ secrets.VERCEL_PROJECT_ID }}
           VERCEL_ARGS: "--prebuilt"
           CREATE_COMMENT: true
-        
+
       - name: Save deployed url
         run: |
           mkdir -p ./pr
