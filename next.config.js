@@ -1,6 +1,10 @@
 /* eslint-disable @typescript-eslint/no-var-requires */
 /** @type {import('next').NextConfig} */
 
+const axios = require('axios');
+axios.defaults.baseURL = process.env.CMS_API_ENDPOINT;
+const CMS_URL = new URL(process.env.CMS_API_ENDPOINT);
+
 module.exports = {
   webpack(config) {
     config.module.rules.push({
@@ -11,7 +15,7 @@ module.exports = {
     return config;
   },
   images: {
-    domains: ['hyjo51vx.directus.app'],
+    domains: [CMS_URL.hostname],
   },
   i18n: {
     locales: ['en', 'zh-CN'], // Array with the languages that you want to use
@@ -19,4 +23,27 @@ module.exports = {
     localeDetection: true,
   },
   trailingSlash: true,
+  async rewrites() {
+    const {
+      data: {
+        data: { access_token },
+      },
+    } = await axios.post(`/auth/login`, {
+      email: process.env.CMS_API_USERNAME,
+      password: process.env.CMS_API_PASSWORD,
+    });
+
+    const {
+      data: { data: redirect },
+    } = await axios.get('/items/redirect', {
+      headers: {
+        Authorization: `Bearer ${access_token}`,
+      },
+    });
+
+    return redirect.map(({ source, destination }) => ({
+      source: `/${source}`,
+      destination,
+    }));
+  },
 };
