@@ -116,6 +116,7 @@ jobs:
           if [[ ${{ env.PROD_BUILD != '' }} ]]; then
             echo ${{ secrets.PROD_URL }} > ./pr/pr_deployed_url
           fi
+          echo ./pr/pr_deployed_url
       - uses: actions/upload-artifact@v2
         with:
           name: pr_deployed_url
