@@ -70,7 +70,6 @@ jobs:
             git fetch --unshallow --tags
             git checkout tags/${{ env.LATEST_RELEASE_TAG }} -B latest-release-${{ env.LATEST_RELEASE_TAG }}
           fi
-          git symbolic-ref HEAD
           ls
 
       - name: 📬 Caching
