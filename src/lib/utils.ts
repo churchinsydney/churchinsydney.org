@@ -1,10 +1,8 @@
-/* eslint-disable no-console */
-// import { format, getDate, isSameMonth,
-import { isSameYear } from 'date-fns';
-import dayjs from 'dayjs';
+import { format, getDate, isSameMonth, isSameYear } from 'date-fns';
 import { countBy, map, sortBy, toPairs } from 'lodash';
 
-// import { DATE_FORMAT } from '@/constants';
+import { DATE_FORMAT } from '@/constants';
+
 import { PostType } from '@/types/types';
 
 export function sortDateFn<T extends PostType>(contentA: T, contentB: T) {
@@ -41,17 +39,14 @@ export function getTags<T extends Array<PostType>>(contents: T) {
 }
 
 export function formatEventDate(startDate: string, endDate: string) {
-  const start = dayjs(new Date(startDate));
-  const end = dayjs(new Date(endDate));
+  const start = new Date(startDate);
+  const end = new Date(endDate);
 
-  if (
-    start.get('month') === end.get('month') &&
-    start.get('year') === end.get('year')
-  ) {
-    return ''; //`${getDate(start)}-${getDate(end)}, ${format(start, 'MMMM yyyy')}`;
-  } else if (isSameYear(new Date(startDate), new Date(endDate))) {
-    return ''; //`${format(start, 'dd MMMM')} - ${format(end, DATE_FORMAT)}`;
+  if (isSameMonth(start, end) && isSameYear(start, end)) {
+    return `${getDate(start)}-${getDate(end)}, ${format(start, 'MMMM yyyy')}`;
+  } else if (isSameYear(start, end)) {
+    return `${format(start, 'dd MMMM')} - ${format(end, DATE_FORMAT)}`;
   }
 
-  return ''; //`${format(start, DATE_FORMAT)} - ${format(end, DATE_FORMAT)}`;
+  return `${format(start, DATE_FORMAT)} - ${format(end, DATE_FORMAT)}`;
 }

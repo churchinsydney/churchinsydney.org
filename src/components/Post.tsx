@@ -1,5 +1,5 @@
 import clsx from 'clsx';
-// import { format, formatDistanceToNow, isSameDay } from 'date-fns';
+import { format, formatDistanceToNow, isSameDay } from 'date-fns';
 import { getMDXComponent } from 'mdx-bundler/client';
 import { useContext, useEffect, useMemo, useState } from 'react';
 
@@ -16,8 +16,7 @@ import Image from '@/components/images/Image';
 import Layout from '@/components/layout/Layout';
 import Seo from '@/components/Seo';
 
-//DATE_FORMAT
-import { IMAGE_SIZE } from '@/constants';
+import { DATE_FORMAT, IMAGE_SIZE } from '@/constants';
 import { AppContext } from '@/context/AppContext';
 
 import { PostType } from '@/types/types';
@@ -86,13 +85,13 @@ export default function Post({ post, recommendations }: PostProps) {
                 <div className='mt-2 flex flex-wrap gap-2 text-sm italic text-gray-400 dark:text-gray-500'>
                   <p>
                     {t['post-last-updated']}:{' '}
-                    {/* {!isSameDay(
+                    {!isSameDay(
                       new Date(post.dateCreated),
                       new Date(post.dateUpdated)
                     ) && `${format(new Date(post.dateCreated), DATE_FORMAT)}, `}
                     {`${formatDistanceToNow(new Date(post.dateUpdated))} ${
                       t['post-ago']
-                    }`} */}
+                    }`}
                   </p>
                 </div>
               )}
