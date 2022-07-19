@@ -41,9 +41,12 @@ module.exports = {
       },
     });
 
-    return redirect.map(({ source, destination }) => ({
-      source: `/${source}`,
-      destination,
-    }));
+    return [
+      { source: '/:slug', destination: '/post/:slug' },
+      ...redirect.map(({ source, destination }) => ({
+        source: `/${source}`,
+        destination,
+      })),
+    ];
   },
 };
