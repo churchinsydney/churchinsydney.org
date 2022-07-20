@@ -35,14 +35,28 @@ module.exports = {
 
     const {
       data: { data: redirect },
-    } = await axios.get('/items/redirect', {
+    } = await axios.get('/items/redirect?limit=-1', {
       headers: {
         Authorization: `Bearer ${access_token}`,
       },
     });
 
+    const {
+      data: { data: posts },
+    } = await axios.get(
+      '/items/posts?limit=-1&filter={ "status": { "_eq": "published" }}',
+      {
+        headers: {
+          Authorization: `Bearer ${access_token}`,
+        },
+      }
+    );
+
     return [
-      { source: '/:slug', destination: '/post/:slug' },
+      ...posts.map(({ slug }) => ({
+        source: `/${slug}`,
+        destination: `/post/${slug}`,
+      })),
       ...redirect.map(({ source, destination }) => ({
         source: `/${source}`,
         destination,
