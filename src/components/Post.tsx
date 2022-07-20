@@ -1,6 +1,6 @@
 import clsx from 'clsx';
 import { formatDistanceToNow, isSameDay } from 'date-fns';
-// import { formatInTimeZone } from 'date-fns-tz';
+import { formatInTimeZone } from 'date-fns-tz';
 import { getMDXComponent } from 'mdx-bundler/client';
 import { useContext, useEffect, useMemo, useState } from 'react';
 
@@ -89,7 +89,12 @@ export default function Post({ post, recommendations }: PostProps) {
                     {!isSameDay(
                       new Date(post.dateCreated),
                       new Date(post.dateUpdated)
-                    ) && ``}
+                    ) &&
+                      `${formatInTimeZone(
+                        new Date(post.dateCreated),
+                        TIME_ZONE,
+                        DATE_FORMAT
+                      )}, `}
                     {`${formatDistanceToNow(new Date(post.dateUpdated))} ${
                       t['post-ago']
                     }`}
