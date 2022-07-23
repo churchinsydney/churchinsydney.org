@@ -191,7 +191,7 @@ export const getTranslationsByNamespace = graphql.query(
             namespace: 'common',
             translations: [
               {
-                text: '英',
+                text: 'en',
               },
             ],
           },
