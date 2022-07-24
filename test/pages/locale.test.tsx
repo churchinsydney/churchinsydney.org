@@ -26,7 +26,7 @@ describe('Locale page', () => {
     vi.clearAllMocks();
   });
 
-  test('Static props hydrate should renders home paaage', async () => {
+  test('Locale should change after clicking locale button', async () => {
     const { props } = await getStaticProps({ locale: 'en' });
 
     render(<Home {...props} />);
@@ -43,5 +43,25 @@ describe('Locale page', () => {
     await userEvent.click(element);
     expect(_locale).toBe('en');
     expect(element).toHaveTextContent('en');
+  });
+
+  test('the component should load zh language when using locale zh', async () => {
+    const { props } = await getStaticProps({ locale: 'zh-CN' });
+
+    render(<Home {...props} />);
+
+    // expect each translation text to be in the document
+    [
+      'home-welcome',
+      'home-introduction-title',
+      'home-quote',
+      'home-quote-reference',
+    ].forEach((key) => {
+      expect(screen.getByText(props.translations[key])).toBeInTheDocument();
+    });
+
+    //remove tags from verse
+    const verseText = props.translations['home-verse'].replace(/<[^>]+>/g, '');
+    expect(screen.getByTestId('home-verse')).toHaveTextContent(verseText);
   });
 });
