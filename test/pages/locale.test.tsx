@@ -65,9 +65,3 @@ describe('Locale page', () => {
     expect(screen.getByTestId('home-verse')).toHaveTextContent(verseText);
   });
 });
-
-// tags
-// filter
-// protected page
-// external link
-// clipboard copy
