@@ -66,10 +66,12 @@ jobs:
           browser: chrome
           headless: true
           record: true
-          command: npx cypress run --browser chrome --headless --config baseUrl=${{ github.event.inputs.url }} --env MAILGUN_API_KEY=${{ secrets.MAILGUN_API_KEY }}
+          config: baseUrl=${{ github.event.inputs.url }}
+          # command: npx cypress run --browser chrome --headless --config baseUrl=${{ github.event.inputs.url }} --env MAILGUN_API_KEY=${{ secrets.MAILGUN_API_KEY }}
         env:
           CYPRESS_RECORD_KEY: ${{ secrets.CYPRESS_RECORD_KEY }}
           GITHUB_TOKEN: ${{secrets.GITHUB_TOKEN}}
+          MAILGUN_API_KE: ${{ secrets.MAILGUN_API_KEY }}
 
       # - name: Update Status ✅
       #   if: ${{ success() }}
