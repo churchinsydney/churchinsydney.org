@@ -51,8 +51,8 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v3
         run: |
+          echo "Github Ref: ${{ github.ref }}"
           echo "Ref: ${{ github.event.inputs.ref }}"
-          git checkout ${{ github.event.inputs.ref }}
           git status
           ls
       # test the deployed site using
