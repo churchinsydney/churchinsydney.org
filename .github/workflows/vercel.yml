@@ -44,6 +44,7 @@ jobs:
       - name: Get latest release with tag
         id: latest-release
         run: |
+          echo ${GITHUB_REF##*/}
           echo ${{ github.ref_name }}
           echo "Ref: ${{ github.ref }}"
           echo "LATEST_RELEASE_TAG=$(curl -s ${{ github.api_url }}/repos/${{ github.repository }}/releases/latest | jq -r '.tag_name')" >> $GITHUB_ENV
@@ -73,7 +74,6 @@ jobs:
             git checkout tags/${{ env.LATEST_RELEASE_TAG }} -B latest-release-${{ env.LATEST_RELEASE_TAG }}
           fi
           ls
-          echo "Branch: $(git branch --show-current)"
 
       - name: 📬 Caching
         uses: actions/cache@v2
@@ -119,7 +119,7 @@ jobs:
     steps:
       - name: Trigger E2E
         run: |
-          echo "Branch: $(git branch --show-current)"        
+          echo "Branch: ${GITHUB_REF##*/}"        
           echo ${{ steps.vercel-deploy.outputs.PREVIEW_URL }}
           echo "Preview URL: ${{ steps.vercel-deploy.outputs.PREVIEW_URL }}"
           curl --request POST \
@@ -127,7 +127,7 @@ jobs:
             --header "Authorization: token ${{ secrets.GITHUB_TOKEN }}" \
             --header 'Content-Type: application/json' \
             --data '{
-              "ref": "${{ github.ref_name }}",
+              "ref": "${GITHUB_REF##*/}",
               "inputs" : {
                 "url": "${{steps.vercel-deploy.outputs.PREVIEW_URL}}"
               }
