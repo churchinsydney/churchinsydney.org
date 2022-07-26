@@ -88,36 +88,29 @@ jobs:
         with:
           node-version: 16.x
 
-      # - name: 🧰 Install dependencies
-      #   run: yarn
+      - name: 🧰 Install dependencies
+        run: yarn
 
-      # - name: 📦 Build project
-      #   run: |
-      #     echo "CMS_API_ENDPOINT=${{ secrets.CMS_API_ENDPOINT }}" >> .env
-      #     echo "CMS_API_USERNAME=${{ secrets.CMS_API_USERNAME }}" >> .env
-      #     echo "CMS_API_PASSWORD=${{ secrets.CMS_API_PASSWORD }}" >> .env
-      #     echo "MAILGUN_API_KEY=${{ secrets.MAILGUN_API_KEY }}" >> .env
-      #     echo "NEXT_PUBLIC_ANALYTICS_ID=${{ secrets.NEXT_PUBLIC_ANALYTICS_ID }}" >> .env
-      #     sudo timedatectl set-timezone Australia/Sydney; npx vercel build ${{ env.PROD_BUILD }}
+      - name: 📦 Build project
+        run: |
+          echo "CMS_API_ENDPOINT=${{ secrets.CMS_API_ENDPOINT }}" >> .env
+          echo "CMS_API_USERNAME=${{ secrets.CMS_API_USERNAME }}" >> .env
+          echo "CMS_API_PASSWORD=${{ secrets.CMS_API_PASSWORD }}" >> .env
+          echo "MAILGUN_API_KEY=${{ secrets.MAILGUN_API_KEY }}" >> .env
+          echo "NEXT_PUBLIC_ANALYTICS_ID=${{ secrets.NEXT_PUBLIC_ANALYTICS_ID }}" >> .env
+          sudo timedatectl set-timezone Australia/Sydney; npx vercel build ${{ env.PROD_BUILD }}
 
-      # - name: Deploy to Vercel Action
-      #   id: vercel-deploy
-      #   uses: zhex900/deploy-to-vercel-action@master
-      #   with:
-      #     GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-      #     VERCEL_TOKEN: ${{ secrets.VERCEL_TOKEN }}
-      #     VERCEL_ORG_ID: ${{ secrets.VERCEL_ORG_ID }}
-      #     VERCEL_PROJECT_ID: ${{ secrets.VERCEL_PROJECT_ID }}
-      #     VERCEL_ARGS: "--prebuilt"
-      #     CREATE_COMMENT: true
-      #     PRODUCTION: ${{ env.PROD_BUILD != '' }}
-      # - name: Invoke workflow inputs
-      #   uses: benc-uk/workflow-dispatch@v1
-      #   with:
-      #     workflow: e2e
-      #     ref: ${{ github.event.pull_request.head.ref }}
-      #     token: ${{ secrets.GITHUB_TOKEN }}
-      #     inputs: '{ "url": "https://churchinsydney-n0c69ov7u-churchinsydney.vercel.app/" }'
+      - name: Deploy to Vercel Action
+        id: vercel-deploy
+        uses: zhex900/deploy-to-vercel-action@master
+        with:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          VERCEL_TOKEN: ${{ secrets.VERCEL_TOKEN }}
+          VERCEL_ORG_ID: ${{ secrets.VERCEL_ORG_ID }}
+          VERCEL_PROJECT_ID: ${{ secrets.VERCEL_PROJECT_ID }}
+          VERCEL_ARGS: "--prebuilt"
+          CREATE_COMMENT: true
+          PRODUCTION: ${{ env.PROD_BUILD != '' }}
 
       - name: Trigger e2e
         run: |
@@ -128,7 +121,7 @@ jobs:
             --header 'Accept: application/vnd.github+json' \
             --header 'Content-Type: application/json' \
             --data '{
-              "ref": "${{ github.head_ref }}",
+              "ref": "${{ github.event.pull_request.head.ref }}",
               "inputs" : {
                 "url": "https://churchinsydney-n0c69ov7u-churchinsydney.vercel.app/"
               }
