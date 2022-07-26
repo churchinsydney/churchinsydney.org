@@ -117,7 +117,7 @@ jobs:
           echo "Preview URL: ${{ steps.vercel-deploy.outputs.PREVIEW_URL }}"
           curl --request POST \
             --url "https://api.github.com/repos/${{ github.repository }}/actions/workflows/e2e.yml/dispatches" \
-            --header "Authorization: token ${{ secrets.GITHUB_TOKEN }}" \
+            -u ${{ secrets.GITHUB_TOKEN }} \
             --header 'Accept: application/vnd.github.everest-preview+json' \
             --header 'Content-Type: application/json' \
             --data '{
@@ -126,7 +126,7 @@ jobs:
                 "url": "https://churchinsydney-n0c69ov7u-churchinsydney.vercel.app/"
               }
             }'
-
+  #  --header "Authorization: token ${{ secrets.GITHUB_TOKEN }}" \
   notify-cms:
     runs-on: ubuntu-latest
     needs:
