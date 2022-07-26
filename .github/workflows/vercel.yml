@@ -115,6 +115,7 @@ jobs:
         uses: benc-uk/workflow-dispatch@v1
         with:
           workflow: e2e
+          ref: ${{ github.event.pull_request.head.ref }}
           token: ${{ secrets.GITHUB_TOKEN }}
           inputs: '{ "url": "https://churchinsydney-n0c69ov7u-churchinsydney.vercel.app/" }'
 
