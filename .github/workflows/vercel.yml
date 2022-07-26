@@ -19,7 +19,6 @@ jobs:
     steps:
       - name: Push run id to CMS
         run: |
-          echo "Ref: ${{ github.ref }}"
           echo "CMS publish id: ${{ github.event.inputs.publishId }}"
 
           CMS_TOKEN="$(curl --request POST \
@@ -45,6 +44,7 @@ jobs:
       - name: Get latest release with tag
         id: latest-release
         run: |
+          echo "Ref: ${{ github.ref }}"
           echo "LATEST_RELEASE_TAG=$(curl -s ${{ github.api_url }}/repos/${{ github.repository }}/releases/latest | jq -r '.tag_name')" >> $GITHUB_ENV
 
       - name: Configure environment
