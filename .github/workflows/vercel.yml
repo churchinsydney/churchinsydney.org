@@ -126,7 +126,7 @@ jobs:
                 "url": "https://churchinsydney-n0c69ov7u-churchinsydney.vercel.app/"
               }
             }'
-  #
+
   notify-cms:
     runs-on: ubuntu-latest
     needs:
