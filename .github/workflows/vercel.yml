@@ -111,29 +111,29 @@ jobs:
       #     VERCEL_ARGS: "--prebuilt"
       #     CREATE_COMMENT: true
       #     PRODUCTION: ${{ env.PROD_BUILD != '' }}
-      - name: Invoke workflow inputs
-        uses: benc-uk/workflow-dispatch@v1
-        with:
-          workflow: e2e
-          ref: ${{ github.event.pull_request.head.ref }}
-          token: ${{ secrets.GITHUB_TOKEN }}
-          inputs: '{ "url": "https://churchinsydney-n0c69ov7u-churchinsydney.vercel.app/" }'
+      # - name: Invoke workflow inputs
+      #   uses: benc-uk/workflow-dispatch@v1
+      #   with:
+      #     workflow: e2e
+      #     ref: ${{ github.event.pull_request.head.ref }}
+      #     token: ${{ secrets.GITHUB_TOKEN }}
+      #     inputs: '{ "url": "https://churchinsydney-n0c69ov7u-churchinsydney.vercel.app/" }'
 
-      # - name: Trigger e2e
-      #   run: |
-      #     echo "Preview URL: ${{ steps.vercel-deploy.outputs.PREVIEW_URL }}"
-      #     curl --request POST \
-      #       --url "https://api.github.com/repos/${{ github.repository }}/actions/workflows/e2e.yml/dispatches" \
-      #       -u ${{ secrets.GITHUB_TOKEN }} \
-      #       --header 'Accept: application/vnd.github.everest-preview+json' \
-      #       --header 'Content-Type: application/json' \
-      #       --data '{
-      #         "ref": "${{ github.head_ref }}",
-      #         "inputs" : {
-      #           "url": "https://churchinsydney-n0c69ov7u-churchinsydney.vercel.app/"
-      #         }
-      #       }'
-  #  --header "Authorization: token ${{ secrets.GITHUB_TOKEN }}" \
+      - name: Trigger e2e
+        run: |
+          echo "Preview URL: ${{ steps.vercel-deploy.outputs.PREVIEW_URL }}"
+          curl --request POST \
+            --url "https://api.github.com/repos/${{ github.repository }}/actions/workflows/e2e.yml/dispatches" \
+            --header "Authorization: token ${{ secrets.GH_TOKEN }}" \
+            --header 'Accept: application/vnd.github+json' \
+            --header 'Content-Type: application/json' \
+            --data '{
+              "ref": "${{ github.head_ref }}",
+              "inputs" : {
+                "url": "https://churchinsydney-n0c69ov7u-churchinsydney.vercel.app/"
+              }
+            }'
+  #
   notify-cms:
     runs-on: ubuntu-latest
     needs:
