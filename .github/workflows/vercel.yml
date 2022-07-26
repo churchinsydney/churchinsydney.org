@@ -116,8 +116,8 @@ jobs:
       - deploy
     steps:
       - name: Trigger E2E
-        if: steps.deploy.outcome == 'success'
         run: |
+          echo ${{ github.ref_name }}
           echo ${{ steps.vercel-deploy.outputs.PREVIEW_URL }}
           echo "Preview URL: ${{ steps.vercel-deploy.outputs.PREVIEW_URL }}"
           curl --request POST \
