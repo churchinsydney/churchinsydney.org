@@ -2,8 +2,8 @@ name: e2e
 on:
   workflow_dispatch:
     inputs:
-      ref:
-        description: git ref
+      url:
+        description: url
         required: true
   # workflow_run:
   #   workflows: [Build and Deploy to Vercel]
@@ -52,7 +52,7 @@ jobs:
         uses: actions/checkout@v3
         run: |
           echo "Github Ref: ${{ github.ref }}"
-          echo "Ref: ${{ github.event.inputs.ref }}"
+          echo "url: ${{ github.event.inputs.url }}"
           git status
           ls
       # test the deployed site using
