@@ -119,7 +119,10 @@ jobs:
               --header "Authorization: token ${{ secrets.GITHUB_TOKEN }}" \
               --header 'Content-Type: application/json' \
               --data '{
-                "url": "${{steps.vercel-deploy.outputs.PREVIEW_URL}}"
+                "ref": "${{ github.ref_name }}",
+                "input" : {
+                  "url": "${{steps.vercel-deploy.outputs.PREVIEW_URL}}"
+                }
               }'
           fi
 
