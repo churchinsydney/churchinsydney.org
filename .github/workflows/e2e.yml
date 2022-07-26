@@ -62,6 +62,7 @@ jobs:
       - name: Cypress run 🏃‍♀️
         uses: cypress-io/github-action@v4.1.1
         with:
+          env: MAILGUN_API_KEY=${{ secrets.MAILGUN_API_KEY }}
           install: true
           browser: chrome
           headless: true
@@ -71,7 +72,7 @@ jobs:
         env:
           CYPRESS_RECORD_KEY: ${{ secrets.CYPRESS_RECORD_KEY }}
           GITHUB_TOKEN: ${{secrets.GITHUB_TOKEN}}
-          MAILGUN_API_KEY: ${{ secrets.MAILGUN_API_KEY }}
+          # MAILGUN_API_KEY: ${{ secrets.MAILGUN_API_KEY }}
 
       # - name: Update Status ✅
       #   if: ${{ success() }}
