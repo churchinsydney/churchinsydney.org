@@ -19,6 +19,7 @@ jobs:
     steps:
       - name: Push run id to CMS
         run: |
+          echo "Ref: ${{ github.ref }}"
           echo "CMS publish id: ${{ github.event.inputs.publishId }}"
 
           CMS_TOKEN="$(curl --request POST \
