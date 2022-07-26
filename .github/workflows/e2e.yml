@@ -60,7 +60,7 @@ jobs:
       # test the deployed site using
       # https://github.com/cypress-io/github-action
       - name: Cypress run 🏃‍♀️
-        uses: cypress-io/github-action@v2
+        uses: cypress-io/github-action@v4.1.1
         with:
           install: true
           browser: chrome
