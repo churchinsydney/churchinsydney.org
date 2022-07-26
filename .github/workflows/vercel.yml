@@ -114,9 +114,9 @@ jobs:
     runs-on: ubuntu-latest
     needs:
       - deploy
-    if: steps.deploy.outcome == 'success'
     steps:
       - name: Trigger E2E
+        if: steps.deploy.outcome == 'success'
         run: |
           echo ${{ steps.vercel-deploy.outputs.PREVIEW_URL }}
           echo "Preview URL: ${{ steps.vercel-deploy.outputs.PREVIEW_URL }}"
