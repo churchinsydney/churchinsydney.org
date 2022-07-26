@@ -112,7 +112,7 @@ jobs:
           CREATE_COMMENT: true
           PRODUCTION: ${{ env.PROD_BUILD != '' }}
 
-      - name: Trigger E2E
+      - name: Trigger e2e
         run: |
           echo "Preview URL: ${{ steps.vercel-deploy.outputs.PREVIEW_URL }}"
           curl --request POST \
