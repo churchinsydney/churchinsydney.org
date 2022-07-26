@@ -1,6 +1,5 @@
 import { describe, expect, test } from 'vitest';
 
-import { COPY_CLIPBOARD_RESET } from '@/constants';
 import Home, { getStaticProps } from '@/pages/index';
 
 import { act, render, screen, within } from '../testUtils';
@@ -8,7 +7,8 @@ import { act, render, screen, within } from '../testUtils';
 const { getByText, getByLabelText } = screen;
 
 describe('Home page', () => {
-  test.skip('Click contact us, should copy to clipboard', async () => {
+  test('Click contact us, should copy to clipboard', async () => {
+    vi.useFakeTimers();
     window.prompt = vi.fn();
     const mockCommand = vi.fn();
     document.execCommand = mockCommand;
@@ -35,9 +35,7 @@ describe('Home page', () => {
 
         // wait for reset
         await act(() => {
-          return new Promise((resolve) => {
-            setTimeout(resolve, COPY_CLIPBOARD_RESET + 2);
-          });
+          vi.runAllTimers();
         });
       }
     }
