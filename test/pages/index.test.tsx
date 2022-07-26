@@ -8,7 +8,7 @@ import { act, render, screen, within } from '../testUtils';
 const { getByText, getByLabelText } = screen;
 
 describe('Home page', () => {
-  test('Click contact us, should copy to clipboard', async () => {
+  test.skip('Click contact us, should copy to clipboard', async () => {
     window.prompt = vi.fn();
     const mockCommand = vi.fn();
     document.execCommand = mockCommand;
