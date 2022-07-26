@@ -3,7 +3,7 @@ on:
   workflow_dispatch:
     inputs:
       url:
-        description: url
+        description: deployed url
         required: true
   # workflow_run:
   #   workflows: [Build and Deploy to Vercel]
@@ -50,25 +50,26 @@ jobs:
 
       - name: Checkout
         uses: actions/checkout@v3
-      - name: "Run e2e tests"
-        run: |
-          echo "Github Ref: ${{ github.ref }}"
-          echo "url: ${{ github.event.inputs.url }}"
-          git status
-          ls
+
+      # - name: "Run e2e tests"
+      #   run: |
+      #     echo "Github Ref: ${{ github.ref }}"
+      #     echo "url: ${{ github.event.inputs.url }}"
+      #     git status
+      #     ls
       # test the deployed site using
       # https://github.com/cypress-io/github-action
-      # - name: Cypress run 🏃‍♀️
-      #   uses: cypress-io/github-action@v2
-      #   with:
-      #     install: true
-      #     browser: chrome
-      #     headless: true
-      #     record: true
-      #     command: npx cypress run --browser chrome --headless --config baseUrl=${{ env.DEPLOYED_URL }} --env MAILGUN_API_KEY=${{ secrets.MAILGUN_API_KEY }}
-      #   env:
-      #     CYPRESS_RECORD_KEY: ${{ secrets.CYPRESS_RECORD_KEY }}
-      #     GITHUB_TOKEN: ${{secrets.GITHUB_TOKEN}}
+      - name: Cypress run 🏃‍♀️
+        uses: cypress-io/github-action@v2
+        with:
+          install: true
+          browser: chrome
+          headless: true
+          record: true
+          command: npx cypress run --browser chrome --headless --config baseUrl=${{ github.event.inputs.url }} --env MAILGUN_API_KEY=${{ secrets.MAILGUN_API_KEY }}
+        env:
+          CYPRESS_RECORD_KEY: ${{ secrets.CYPRESS_RECORD_KEY }}
+          GITHUB_TOKEN: ${{secrets.GITHUB_TOKEN}}
 
       # - name: Update Status ✅
       #   if: ${{ success() }}
