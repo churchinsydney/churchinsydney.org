@@ -9,7 +9,6 @@ export default async function handler(_: NextApiRequest, res: NextApiResponse) {
     buildId: process.env.NEXT_BUILD_ID,
     commit: serverRuntimeConfig.NEXT_COMMIT,
     branch: serverRuntimeConfig.NEXT_BRANCH,
-    region: process.env.VERCEL_GIT_COMMIT_REF_NAME,
     environment: process.env.VERCEL_ENV,
   });
 }
