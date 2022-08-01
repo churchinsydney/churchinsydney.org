@@ -2,26 +2,11 @@
 /** @type {import('next').NextConfig} */
 
 const axios = require('axios');
-const { execSync } = require('child_process');
 
 axios.defaults.baseURL = process.env.CMS_API_ENDPOINT;
 const CMS_URL = new URL(process.env.CMS_API_ENDPOINT);
 
-const commit = execSync('git rev-parse HEAD', { cwd: process.cwd() })
-  .toString()
-  .trim();
-
-const branch = execSync('git rev-parse --abbrev-ref HEAD', {
-  cwd: process.cwd(),
-})
-  .toString()
-  .trim();
-
 module.exports = {
-  serverRuntimeConfig: {
-    NEXT_COMMIT: commit,
-    NEXT_BRANCH: branch,
-  },
   webpack(config) {
     config.module.rules.push({
       test: /\.svg$/,
