@@ -8,7 +8,6 @@
   viewBox='0 0 100 100'
   enableBackground='new 0 0 100 100'
   xmlSpace='preserve'
-  className={className}
 >
   <path d='M22.821,52.939'></path>
   <g>

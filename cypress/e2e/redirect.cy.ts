@@ -1,6 +1,6 @@
 describe('Post slug', () => {
   it('/announcement should open', () => {
-    cy.setCookie('members-password', '***REMOVED***');
+    cy.setCookie('members-password', 'Amen');
     cy.visit('/announcement');
 
     cy.title().should('contains', 'Announcement | churchinsydney.org');
