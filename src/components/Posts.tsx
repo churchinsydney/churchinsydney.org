@@ -94,7 +94,7 @@ export default function Posts({
         post.title.toLowerCase().includes(search.toLowerCase()) ||
         (post?.summary &&
           post?.summary.toLowerCase().includes(search.toLowerCase())) ||
-        // Check if splitted search contained in tag
+        // Check if search contained in tag
         search
           .toLowerCase()
           .split(' ')
