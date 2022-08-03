@@ -42,13 +42,6 @@ describe('Home page', () => {
 
     cy.get('button[aria-label="phone"]').click(); //.trigger('mousedown');
     cy.window().its('prompt').should('be.called');
-    cy.window()
-      .its('prompt')
-      .should(
-        'be.calledWith',
-        'Copy to clipboard: ⌘+C, Enter',
-        '+61 02 9341 2426'
-      );
   });
 });
 
