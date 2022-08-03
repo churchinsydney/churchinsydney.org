@@ -1,7 +1,6 @@
 /// <reference types="cypress" />
 
 import 'cypress-wait-until';
-import 'cypress-real-events/support';
 
 // ***********************************************
 // This example commands.ts shows you how to
