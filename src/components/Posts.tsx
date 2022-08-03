@@ -220,6 +220,7 @@ export default function Posts({
             <ul
               className='mt-4 grid gap-4 sm:grid-cols-2 xl:grid-cols-3'
               data-fade='5'
+              aria-label='post-cards'
             >
               {filteredPosts.length > 0 ? (
                 filteredPosts.map((post) => (
