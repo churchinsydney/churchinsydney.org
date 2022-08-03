@@ -2,7 +2,7 @@ import { describe, expect, test } from 'vitest';
 
 import Home, { getStaticProps } from '@/pages/index';
 
-import { render, screen, within } from '../testUtils';
+import { act, render, screen, within } from '../testUtils';
 
 const { getByText } = screen;
 
@@ -33,13 +33,17 @@ describe('Tooltip', () => {
       .queryByText('Search the web')
       ?.closest('[role="tooltip"]');
     expect(tooltipElement).toHaveClass('invisible');
-
-    await user.hover(getByText('Search engine'));
-
+    await act(async () => {
+      await user.hover(getByText('Search engine'));
+    });
+    await new Promise((r) => setTimeout(r, 500));
     expect(tooltipElement).not.toHaveClass('invisible');
 
     // github link should not have tooltip
-    await user.hover(getByText('github'));
+    await act(async () => {
+      await user.hover(getByText('github'));
+    });
+    await new Promise((r) => setTimeout(r, 500));
     expect(getByText('github').parentNode).not.toHaveAttribute(
       'data-testid',
       'tooltip-target'
@@ -65,9 +69,10 @@ describe('Tooltip', () => {
       ).queryByLabelText(contactId);
 
       expect(tooltipTargetElement).toBeInTheDocument();
-
-      await user.hover(tooltipTargetElement as HTMLElement);
-
+      await act(async () => {
+        await user.hover(tooltipTargetElement as HTMLElement);
+      });
+      await new Promise((r) => setTimeout(r, 500));
       expect(tooltipElement).not.toHaveClass('invisible');
     });
   });
