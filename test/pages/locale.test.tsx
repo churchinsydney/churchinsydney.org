@@ -37,7 +37,7 @@ describe('Locale page', () => {
     await act(async () => {
       await user.click(element);
     });
-
+    await new Promise((r) => setTimeout(r, 500));
     expect(screen.getByLabelText('change-language')).toHaveTextContent('en');
     expect(_locale).toBe('zh-CN');
 
