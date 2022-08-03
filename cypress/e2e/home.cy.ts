@@ -36,16 +36,19 @@ describe('Home page', () => {
     cy.visit('/');
 
     // Disable window prompt which is used in link creation by copy-to-clipboard library
-    // This prompt pauses test execution during `cypress open`
     cy.window().then((win) => {
       cy.stub(win, 'prompt').returns(win.prompt);
     });
-    cy.get('button[aria-label="phone"]').click(); //.trigger('mousedown');
 
+    cy.get('button[aria-label="phone"]').click(); //.trigger('mousedown');
+    cy.window().its('prompt').should('be.called');
     cy.window()
-      .its('navigator.clipboard')
-      .invoke('readText')
-      .should('contains', '+61');
+      .its('prompt')
+      .should(
+        'be.calledWith',
+        'Copy to clipboard: ⌘+C, Enter',
+        '+61 02 9341 2426'
+      );
   });
 });
 
