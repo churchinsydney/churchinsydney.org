@@ -23,6 +23,15 @@ module.exports = {
     localeDetection: true,
   },
   trailingSlash: true,
+  async redirects() {
+    return [
+      {
+        source: '/cms',
+        destination: process.env.CMS_API_ENDPOINT,
+        permanent: true,
+      },
+    ];
+  },
   async rewrites() {
     const posts = await getPosts();
     const redirect = await getRedirect();

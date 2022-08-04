@@ -1,6 +1,6 @@
 <div align="center">
   <h1>churchinsydney.org</h1>
-  <p>💠 Build with Next.js, TS, GraphQL, Tailwind CSS.</p>
+  <p>💠 Build with Next.js, Directus.io, TS, GraphQL, Tailwind CSS.</p>
 </div>
 
 [![Netlify Status](https://api.netlify.com/api/v1/badges/5aca700e-e8ab-4e5d-b435-9214cb3fe8a0/deploy-status)](https://app.netlify.com/sites/churchinsydney/deploys)
