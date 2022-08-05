@@ -1,5 +1,3 @@
-import { wait } from '@testing-library/user-event/dist/types/utils';
-
 type ViewportPreset = 'macbook-13' | 'iphone-x';
 
 describe('Our member page', () => {
