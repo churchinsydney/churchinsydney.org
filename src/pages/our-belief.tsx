@@ -33,7 +33,6 @@ export default function OurBeliefsPage({
     text: '',
     ref: '',
   };
-
   return (
     <AppContext.Provider value={{ translations, links, settings }}>
       <Layout>
@@ -57,6 +56,7 @@ export default function OurBeliefsPage({
                   <ul
                     className='mt-12 grid gap-4 sm:grid-cols-1 xl:grid-cols-2'
                     data-fade='5'
+                    role='ourBeliefsList'
                   >
                     {ourBeliefs.map(({ text, ref }, i) => (
                       <li className='mt-5' key={ref}>
