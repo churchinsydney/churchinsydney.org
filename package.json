@@ -71,7 +71,7 @@
     "intersection-observer": "^0.12.2",
     "jsdom": "^20.0.0",
     "mdx-bundler": "^9.0.1",
-    "msw": "^0.45.0",
+    "msw": "^0.46.0",
     "next-sitemap": "^3.1.21",
     "postcss": "^8.4.16",
     "prettier": "^2.7.1",
