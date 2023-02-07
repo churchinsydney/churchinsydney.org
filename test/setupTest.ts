@@ -9,7 +9,7 @@ import { server } from './__mocks__/network/server';
 process.env.CMS_API_ENDPOINT = 'https://backend';
 process.env.CMS_API_USERNAME = 'user';
 process.env.CMS_API_PASSWORD = 'password';
-global.IS_REACT_ACT_ENVIRONMENT = true;
+
 global.TextEncoder = TextEncoder;
 
 beforeAll(() => {
