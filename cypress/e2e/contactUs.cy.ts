@@ -32,7 +32,7 @@ describe('Contact us page', () => {
           .request({
             method: 'GET',
             url: `https://api.mailgun.net/v3/churchinsydney.org/events?limit=1&event=delivered&subject=${randomString}`,
-            auth: { username: 'api', password: Cypress.env('MAILGUN_API_KEY') },
+            auth: { username: 'api', password: Cypress.env('MAIL_API_KEY') },
           })
           .then((response) => response.body.items.length === 1),
       {
