@@ -128,20 +128,20 @@ jobs:
       #     TRIM_COMMIT_MESSAGE: true
       #     PRODUCTION: ${{ env.PROD_BUILD != '' }}
 
-      - name: Trigger e2e
-        run: |
-          echo "Preview URL: ${{ env.PREVIEW_URL }}"
-          curl --request POST \
-            --url "https://api.github.com/repos/${{ github.repository }}/actions/workflows/e2e.yml/dispatches" \
-            --header "Authorization: token ${{ secrets.GH_TOKEN }}" \
-            --header 'Accept: application/vnd.github+json' \
-            --header 'Content-Type: application/json' \
-            --data '{
-              "ref": "${{ github.event.pull_request.head.ref }}",
-              "inputs" : {
-                "url": "${{ env.PREVIEW_URL }}"
-              }
-            }'
+      # - name: Trigger e2e
+      #   run: |
+      #     echo "Preview URL: ${{ env.PREVIEW_URL }}"
+      #     curl --request POST \
+      #       --url "https://api.github.com/repos/${{ github.repository }}/actions/workflows/e2e.yml/dispatches" \
+      #       --header "Authorization: token ${{ secrets.GH_TOKEN }}" \
+      #       --header 'Accept: application/vnd.github+json' \
+      #       --header 'Content-Type: application/json' \
+      #       --data '{
+      #         "ref": "${{ github.event.pull_request.head.ref }}",
+      #         "inputs" : {
+      #           "url": "${{ env.PREVIEW_URL }}"
+      #         }
+      #       }'
 
   notify-cms:
     runs-on: ubuntu-latest

@@ -17,8 +17,9 @@ jobs:
       - uses: Borales/actions-yarn@v3.0.0
         with:
           cmd: install
-        env:
-          CI_TEST: true
+
       - uses: Borales/actions-yarn@v3.0.0
         with:
           cmd: test
+        env:
+          CI_TEST: true
