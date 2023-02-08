@@ -105,17 +105,23 @@ jobs:
           sudo timedatectl set-timezone Australia/Sydney; npx vercel build ${{ env.PROD_BUILD }}
 
       - name: Deploy to Vercel Action
-        id: vercel-deploy
-        uses: zhex900/deploy-to-vercel-action@master
-        with:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          VERCEL_TOKEN: ${{ secrets.VERCEL_TOKEN }}
-          VERCEL_ORG_ID: ${{ secrets.VERCEL_ORG_ID }}
-          VERCEL_PROJECT_ID: ${{ secrets.VERCEL_PROJECT_ID }}
-          VERCEL_ARGS: "--prebuilt"
-          CREATE_COMMENT: true
-          TRIM_COMMIT_MESSAGE: true
-          PRODUCTION: ${{ env.PROD_BUILD != '' }}
+        # uses: actions/checkout@v2
+        run: |
+          npx vercel pull --yes --environment=preview --token=${{ secrets.VERCEL_TOKEN }}
+          npx vercel build --token=${{ secrets.VERCEL_TOKEN }}
+          npx vercel deploy --prebuilt --token=${{ secrets.VERCEL_TOKEN }}
+      # - name: Deploy to Vercel Action
+      #   id: vercel-deploy
+      #   uses: BetaHuhn/deploy-to-vercel-action@v1
+      #   with:
+      #     GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      #     VERCEL_TOKEN: ${{ secrets.VERCEL_TOKEN }}
+      #     VERCEL_ORG_ID: ${{ secrets.VERCEL_ORG_ID }}
+      #     VERCEL_PROJECT_ID: ${{ secrets.VERCEL_PROJECT_ID }}
+      #     VERCEL_ARGS: "--prebuilt"
+      #     CREATE_COMMENT: true
+      #     TRIM_COMMIT_MESSAGE: true
+      #     PRODUCTION: ${{ env.PROD_BUILD != '' }}
 
       - name: Trigger e2e
         run: |
