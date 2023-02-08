@@ -105,9 +105,9 @@ jobs:
           echo "MAIL_API_KEY=${{ secrets.MAIL_API_KEY }}" >> .env
           echo "NEXT_PUBLIC_ANALYTICS_ID=${{ secrets.NEXT_PUBLIC_ANALYTICS_ID }}" >> .env
           npx vercel build ${{ env.PROD_BUILD }}
-          npx vercel deploy --prebuilt --token=${{ secrets.VERCEL_TOKEN }}
-          echo "PREVIEW_URL: $PREVIEW_URL"
-          echo "PREVIEW_URL=$PREVIEW_URL" >> $GITHUB_ENV
+          npx vercel deploy --prebuilt --token=${{ secrets.VERCEL_TOKEN }} > deployment-url.txt
+          cat deployment-url.txt
+          echo "PREVIEW_URL=$(cat deployment-url.txt)" >> $GITHUB_ENV
       #
       #- name: Deploy to Vercel Action
       #   # uses: actions/checkout@v2
