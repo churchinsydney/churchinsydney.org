@@ -6,13 +6,13 @@ import Header from '@/components/layout/Header';
 import UpdateAvailable from '../UpdateAvailable';
 
 export default function Layout({ children }: { children: React.ReactNode }) {
-  console.log('CI', process.env.CI_TEST);
+  const isCiTest = process.env?.CI_TEST === 'true';
   return (
     <>
       <Header />
       <div id='skip-nav'>{children}</div>
       <Footer />
-      <UpdateAvailable className='absolute bottom-5 right-5' />
+      {isCiTest && <UpdateAvailable className='absolute bottom-5 right-5' />}
     </>
   );
 }
