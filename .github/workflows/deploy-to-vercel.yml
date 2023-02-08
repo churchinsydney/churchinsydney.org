@@ -106,7 +106,8 @@ jobs:
           echo "NEXT_PUBLIC_ANALYTICS_ID=${{ secrets.NEXT_PUBLIC_ANALYTICS_ID }}" >> .env
           npx vercel build ${{ env.PROD_BUILD }}
           npx vercel deploy --prebuilt --token=${{ secrets.VERCEL_TOKEN }}
-          echo $PREVIEW_URL
+          echo "PREVIEW_URL: $PREVIEW_URL"
+          echo "PREVIEW_URL=$PREVIEW_URL" >> $GITHUB_ENV
       #
       #- name: Deploy to Vercel Action
       #   # uses: actions/checkout@v2
@@ -129,7 +130,7 @@ jobs:
 
       - name: Trigger e2e
         run: |
-          echo "Preview URL: ${{ steps.vercel-deploy.outputs.PREVIEW_URL }}"
+          echo "Preview URL: ${{ env.PREVIEW_URL }}"
           curl --request POST \
             --url "https://api.github.com/repos/${{ github.repository }}/actions/workflows/e2e.yml/dispatches" \
             --header "Authorization: token ${{ secrets.GH_TOKEN }}" \
