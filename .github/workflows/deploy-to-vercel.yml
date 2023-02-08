@@ -91,8 +91,10 @@ jobs:
       - name: 🧰 Install dependencies
         run: yarn
 
-      - name: 📦 Build project
+      - name: 📦 Build and deploy project
+        id: vercel-deploy
         run: |
+          sudo timedatectl set-timezone Australia/Sydney;
           echo "DEPLOY_COMMIT=${{ github.sha }}" >> .env
           echo "DEPLOY_BRANCH=${{ github.head_ref }}" >> .env
           echo "DEPLOY_REF=${{ github.ref_name }}" >> .env
@@ -104,7 +106,8 @@ jobs:
           echo "NEXT_PUBLIC_ANALYTICS_ID=${{ secrets.NEXT_PUBLIC_ANALYTICS_ID }}" >> .env
           npx vercel build ${{ env.PROD_BUILD }}
           npx vercel deploy --prebuilt --token=${{ secrets.VERCEL_TOKEN }}
-      #    sudo timedatectl set-timezone Australia/Sydney;
+          echo $PREVIEW_URL
+      #
       #- name: Deploy to Vercel Action
       #   # uses: actions/checkout@v2
       #   run: |
