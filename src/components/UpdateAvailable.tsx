@@ -1,18 +1,18 @@
-// import { useHasNewDeploy } from 'next-deploy-notifications';
-import { useContext, useState } from 'react';
+import { useHasNewDeploy } from 'next-deploy-notifications';
+import { useContext, useEffect, useState } from 'react';
 
 import { AppContext } from '@/context/AppContext';
 
 export default function UpdateAvailable({ className }: { className?: string }) {
   const { translations: t } = useContext(AppContext);
   const [isOpen, setIsOpen] = useState(false);
-  // const { hasNewDeploy } = useHasNewDeploy();
+  const { hasNewDeploy } = useHasNewDeploy();
 
-  // useEffect(() => {
-  //   if (hasNewDeploy) {
-  //     setIsOpen(true);
-  //   }
-  // }, [hasNewDeploy]);
+  useEffect(() => {
+    if (hasNewDeploy) {
+      setIsOpen(true);
+    }
+  }, [hasNewDeploy]);
 
   if (!isOpen) return null;
 
