@@ -7,7 +7,7 @@ import UpdateAvailable from '../UpdateAvailable';
 
 export default function Layout({ children }: { children: React.ReactNode }) {
   const isNotCi = !process.env?.CI_TEST;
-  console.log({ isNotCi });
+
   return (
     <>
       <Header />
