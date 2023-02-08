@@ -102,10 +102,10 @@ jobs:
           echo "CMS_API_PASSWORD=${{ secrets.CMS_API_PASSWORD }}" >> .env
           echo "MAIL_API_KEY=${{ secrets.MAIL_API_KEY }}" >> .env
           echo "NEXT_PUBLIC_ANALYTICS_ID=${{ secrets.NEXT_PUBLIC_ANALYTICS_ID }}" >> .env
-          npx vercel pull --yes --environment=preview --token=VRySX0CmwikDFb9mI8lUciJh
-          sudo timedatectl set-timezone Australia/Sydney; npx vercel build ${{ env.PROD_BUILD }}
+          npx vercel build ${{ env.PROD_BUILD }}
           npx vercel deploy --prebuilt --token=${{ secrets.VERCEL_TOKEN }}
-      # - name: Deploy to Vercel Action
+      #    sudo timedatectl set-timezone Australia/Sydney;
+      #- name: Deploy to Vercel Action
       #   # uses: actions/checkout@v2
       #   run: |
       #     npx vercel pull --yes --environment=preview --token=${{ secrets.VERCEL_TOKEN }}
