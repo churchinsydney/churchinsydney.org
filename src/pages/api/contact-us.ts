@@ -63,6 +63,6 @@ export default async function handler(
   } catch (error: unknown) {
     // eslint-disable-next-line no-console
     console.error(JSON.stringify(error, null, 2));
-    res.status(400).json({ status: 'ERROR' });
+    res.status(400).json({ status: 'ERROR', error });
   }
 }
