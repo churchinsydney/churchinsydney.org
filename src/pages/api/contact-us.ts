@@ -50,7 +50,7 @@ export default async function handler(
   };
 
   try {
-    await axios({
+    const { data } = await axios({
       method: 'post',
       url: MAIL_ENDPOINT,
       headers: {
@@ -58,7 +58,7 @@ export default async function handler(
       },
       data: msg,
     });
-    res.status(200).json({ status: 'OK' });
+    res.status(200).json({ status: 'OK', ...data });
     // res.status(500).json({ status: 'ERROR' });
   } catch (error: unknown) {
     // eslint-disable-next-line no-console

@@ -41,7 +41,7 @@
     "react-hook-form": "^7.43.1",
     "react-icons": "^4.7.1",
     "react-image-lightbox": "^5.1.4",
-    "react-intersection-observer": "^9.4.1"
+    "react-intersection-observer": "^9.4.2"
   },
   "devDependencies": {
     "@svgr/webpack": "^6.5.1",
@@ -62,8 +62,8 @@
     "cypress": "^12.5.1",
     "cypress-terminal-report": "^5.0.2",
     "cypress-wait-until": "^1.7.2",
-    "esbuild": "^0.17.6",
-    "eslint": "^8.33.0",
+    "esbuild": "^0.17.7",
+    "eslint": "^8.34.0",
     "eslint-config-next": "^13.1.6",
     "eslint-config-prettier": "^8.6.0",
     "eslint-plugin-cypress": "^2.12.1",
@@ -71,8 +71,8 @@
     "intersection-observer": "^0.12.2",
     "jsdom": "^21.1.0",
     "mdx-bundler": "^9.2.1",
-    "msw": "^1.0.0",
-    "next-sitemap": "^3.1.50",
+    "msw": "^1.0.1",
+    "next-sitemap": "^3.1.52",
     "postcss": "^8.4.21",
     "prettier": "^2.8.4",
     "prettier-plugin-tailwindcss": "^0.2.2",
@@ -80,9 +80,9 @@
     "rehype-slug": "^5.1.0",
     "remark-gfm": "^3.0.1",
     "start-server-and-test": "^1.15.3",
-    "tailwindcss": "^3.2.4",
+    "tailwindcss": "^3.2.6",
     "typescript": "^4.9.5",
-    "vercel": "^28.15.2",
+    "vercel": "^28.15.3",
     "vitest": "^0.28.4",
     "whatwg-fetch": "^3.6.2"
   },
