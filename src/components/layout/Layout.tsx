@@ -6,7 +6,7 @@ import Header from '@/components/layout/Header';
 import UpdateAvailable from '../UpdateAvailable';
 
 export default function Layout({ children }: { children: React.ReactNode }) {
-  const isNotCi = !process.env?.CI_TEST;
+  const isNotCi = !process?.env?.CI_TEST;
 
   return (
     <>

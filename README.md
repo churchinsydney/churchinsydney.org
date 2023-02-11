@@ -69,4 +69,5 @@ Open [http://localhost:3000](http://localhost:3000) with your browser to see the
 * remove acts warning in test
 * create cms redirect using vercel
 * fix e2e test
-* 
+* auto extend every 7 days
+*  
