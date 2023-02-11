@@ -104,15 +104,6 @@ jobs:
           echo "NEXT_PUBLIC_ANALYTICS_ID=${{ secrets.NEXT_PUBLIC_ANALYTICS_ID }}" >> .env
           sudo timedatectl set-timezone Australia/Sydney; npx vercel build ${{ env.PROD_BUILD }}
 
-      # npx vercel deploy --prebuilt --token=${{ secrets.VERCEL_TOKEN }} > deployment-url.txt
-      # cat deployment-url.txt
-      # echo "PREVIEW_URL=$(cat deployment-url.txt)" >> $GITHUB_ENV
-      #- name: Deploy to Vercel Action
-      #   # uses: actions/checkout@v2
-      #   run: |
-      #     npx vercel pull --yes --environment=preview --token=${{ secrets.VERCEL_TOKEN }}
-      #     npx vercel build
-
       - name: Deploy to Vercel Action
         id: vercel-deploy
         uses: Merott/deploy-to-vercel-action@prebuilt
@@ -129,17 +120,17 @@ jobs:
       - name: Trigger e2e
         run: |
           echo "Preview URL: ${{ steps.vercel-deploy.outputs.PREVIEW_URL }}"
-      #      curl --request POST \
-      #       --url "https://api.github.com/repos/${{ github.repository }}/actions/workflows/e2e.yml/dispatches" \
-      #       --header "Authorization: token ${{ secrets.GH_TOKEN }}" \
-      #       --header 'Accept: application/vnd.github+json' \
-      #       --header 'Content-Type: application/json' \
-      #       --data '{
-      #         "ref": "${{ github.event.pull_request.head.ref }}",
-      #         "inputs" : {
-      #           "url": "${{ env.PREVIEW_URL }}"
-      #         }
-      #       }'
+          curl --request POST \
+          --url "https://api.github.com/repos/${{ github.repository }}/actions/workflows/e2e.yml/dispatches" \
+          --header "Authorization: token ${{ secrets.GH_TOKEN }}" \
+          --header 'Accept: application/vnd.github+json' \
+          --header 'Content-Type: application/json' \
+          --data '{
+            "ref": "${{ github.event.pull_request.head.ref }}",
+            "inputs" : {
+              "url": "${{ steps.vercel-deploy.outputs.PREVIEW_URL }}"
+            }
+          }'
 
   notify-cms:
     runs-on: ubuntu-latest
