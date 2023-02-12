@@ -1,6 +1,6 @@
 import fs from 'fs';
 export async function getRssXml() {
-  const url = 'https://churchinsydney.org';
+  const url = process.env.SITE_URL;
 
   return `
     <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:blogChannel="${url}">

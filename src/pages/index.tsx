@@ -12,6 +12,7 @@ import Layout from '@/components/layout/Layout';
 import ButtonLink from '@/components/links/ButtonLink';
 import UnstyledLink from '@/components/links/UnstyledLink';
 import Seo from '@/components/Seo';
+import StructuredData from '@/components/StructuredData';
 import Trans from '@/components/translation/Trans';
 
 import {
@@ -49,6 +50,7 @@ export default function IndexPage({
     >
       <Layout>
         <Seo />
+        <StructuredData />
         <main>
           <section
             className={clsx(
