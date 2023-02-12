@@ -39,7 +39,6 @@ export default function IndexPage({
   settings: Settings;
 }) {
   const isLoaded = useLoaded();
-
   return (
     <AppContext.Provider
       value={{
@@ -50,7 +49,7 @@ export default function IndexPage({
     >
       <Layout>
         <Seo />
-        <StructuredData />
+        <StructuredData address={settings.address} phone={settings.phone} />
         <main>
           <section
             className={clsx(
