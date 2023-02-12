@@ -15,7 +15,7 @@ const defaultData = {
   },
   url: process.env.SITE_URL,
   telephone: '',
-  logo: 'https://dev.churchinsydney.org/images/logo.svg',
+  logo: `${process.env.SITE_URL}/images/logo.svg`,
   openingHoursSpecification: [
     {
       '@type': 'OpeningHoursSpecification',
